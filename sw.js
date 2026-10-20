@@ -1,6 +1,6 @@
 // Offline support: keep a copy of the app on the device.
 // Opens instantly from the saved copy, then quietly checks for a newer version online.
-const CACHE = "sdle-v4";
+const CACHE = "sdle-v5";
 const CORE = ["./", "./index.html"];
 
 self.addEventListener("install", e => {
