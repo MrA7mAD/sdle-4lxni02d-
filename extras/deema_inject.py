@@ -19,7 +19,7 @@ assert m, "October bank definition not found"
 secs = m.group(1)
 entry = ('\n "deema":{id:"deema",tag:"Deema",name:"Deema · 20 Oct 2026",'
          'blurb:"Deema\'s recall of the 20 October 2026 exam, written up as multiple choice and checked against Rafi\' Al-Maqam 16. '
-         'Items she couldn\'t recall an answer for are practice-only and aren\'t scored.",'
+         'Where she couldn\'t recall an answer, it was worked out from the references and flagged.",'
          'doc:"progressdeema",ls:"sdle-deema-progress-v1",lss:"sdle-deema-session-v1",kindFilter:null,\n   secs:' + secs + '},')
 s = s[:m.end()] + entry + s[m.end():]
 
@@ -31,9 +31,8 @@ assert k == 1, "ORDER not found"
 note = ('  if(B.id==="deema")h+=\'<p class="sub" style="font-size:.86rem;margin:-12px 0 22px">Deema\\\'s 20 Oct 2026 recall. '
         'Where she remembered only the question, the other options were written in. Where she couldn\\\'t remember the answer, '
         'it was worked out against Rafi\\\' Al-Maqam 16 and the textbooks, and the note under each question says so. '
-        'Questions tagged \\"rebuilt\\" were written around a short recall. A few items with no answer are practice-only and aren\\\'t scored. '
-        'Four recalled topics had too little detail to use: multiple endo questions with a new picture, two calculation cases, '
-        'a long case about tooth 36, and a long endo-perio case.</p>\';\n')
+        'Questions tagged \\"rebuilt\\" were written around a short recall, including the two calculation cases, the tooth-36 case and the endo-perio case. '
+        'A ⚠ under the answer means the references disagree, so check it. Only \\"multiple endo questions with a new picture\\" had nothing to rebuild from.</p>\';\n')
 anchor = '  if(B.id==="oct")h+='
 assert anchor in s
 s = s.replace(anchor, note + anchor, 1)

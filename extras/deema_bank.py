@@ -204,6 +204,76 @@ Q = [
       c=cons("S10-Q111-C"), r=ref16("S10-Q111-C"), by=BYR, n="The recall only said \"canine space infection photo\"; the question and options were written in."),
 ]
 
+
+# ---- Version 2: every recall item is a scored MCQ (former practice-only items replaced) ----
+WARN = " ⚠ The recall had no answer and the references disagree; the best-supported answer is used."
+REPL = {
+ 7: dict(s=1, q="Which instruments are used to finish and polish a Class IV composite restoration?",
+      o=["Fine finishing diamonds or multifluted (12–30-blade) carbide burs, then polishing discs, rubber points and paste",
+         "Coarse diamond burs only", "Plain steel round burs", "Pumice in a rubber cup only"],
+      e="Gross contouring uses fine or extra-fine finishing diamonds or multifluted carbide finishing burs. The surface is then refined with graded discs, rubber points or cups, and polishing paste. Coarse diamonds and steel burs leave a rough surface, and pumice alone can't shape the restoration.",
+      c="Answer worked out by reasoning; not covered in Rafi' Al-Maqam 16", r="Where to read more: Ritter AV et al. Sturdevant's Art and Science of Operative Dentistry. Finishing and polishing composite restorations.",
+      by=BYR, n="Deema remembered an option of \"2 carbide burs and 1 diamond\" but not the answer, so the options were written in."),
+ 9: dict(s=10, q="An irregular brown macule on the palate is an incidental finding. What is the most likely diagnosis?",
+      o=["Nevus (intramucosal)", "Melanotic macule", "Amalgam tattoo", "Physiologic pigmentation"],
+      e="The hard palate is the most common oral site for a nevus, while an oral melanotic macule is most typical of the lower lip vermilion and gingiva. Because the palate is also the commonest site of oral melanoma, an irregular pigmented palatal lesion should still be biopsied.",
+      c="Answer worked out by reasoning; " + NOT16 + "." + WARN, r=ref16("S10-Q96-D"),
+      by=BY, n="Deema recalled \"…. nevus\" (first word missing) and melanotic macule but not the answer; two options were written in."),
+ 10: dict(s=5, q="In a complete denture, the \"F\" sound comes out like \"V\". How are the maxillary anterior teeth positioned?",
+      o=["Too far incisally (too long)", "Too far cervically (too short)", "Too far palatally"],
+      e="For F and V, the maxillary incisal edges should lightly touch the wet-dry line of the lower lip. If the incisors are too long, they press into the lip and \"F\" sounds like \"V\". If they are too short, \"V\" sounds like \"F\".",
+      c="Answer worked out by reasoning; " + NOT16 + "." + WARN, r="Where to read more: Zarb GA et al. Prosthodontic Treatment for Edentulous Patients. Phonetics and anterior tooth arrangement.",
+      by=BY, n="Recalled as \"anterior more incisal / anterior more cervical / anterior more palatal\". " + NOANS),
+ 12: dict(s=6, q="A child has a mouth-breathing habit with no nasal obstruction. Which appliance is used?",
+      o=["Oral (vestibular) screen", "Rapid maxillary expansion", "Removable appliance with Z-spring", "Headgear"],
+      e="The oral (vestibular) screen is the habit-breaking appliance: it blocks the oral airway and trains lip seal and nasal breathing, once any airway obstruction has been ruled out. Rapid maxillary expansion is used when there is also a narrow maxilla or posterior crossbite.",
+      c="Answer worked out by reasoning; " + cons("S07-Q11-H") + ". Rafi' Al-Maqam 19 gives \"expansion\" for this topic." + WARN, r=ref16("S07-Q11-H"),
+      by=BYR, n="The recall only said \"mouth breather, which appliance\"; the options were written in."),
+ 16: dict(s=13, q="A patient with liver cirrhosis needs local anaesthesia. Which agent is preferred?",
+      o=["Prilocaine", "Bupivacaine", "Xylocaine (lidocaine)", "Procaine"],
+      e="Amides are broken down in the liver, so their effect and toxicity are prolonged in cirrhosis. Prilocaine is the best choice here because part of its metabolism happens outside the liver, in the lungs and kidneys. Bupivacaine is long-acting and the most dependent on the liver. Procaine is an ester, but the plasma cholinesterase that breaks it down is made by the liver and is low in cirrhosis. If articaine is offered, choose it. Use the lowest effective dose and check INR and platelets.",
+      c="Answer worked out by reasoning; " + cons("S10-Q33-E") + "." + WARN, r=ref16("S10-Q33-E"),
+      by=BY, n=NOANS),
+ 24: dict(s=4, q="A retained primary canine has a good crown and root, and the permanent canine 13 has a poor prognosis (e.g., impacted). What is the plan?",
+      o=["Retain the primary canine", "Crown the primary canine", "Extraction and implant", "Extraction and space closure"],
+      e="A retained primary tooth with a good root and no successor that can be brought into place is kept as long as it stays functional and esthetic. It can last for years. An implant or prosthesis is planned only once it fails.",
+      c="Answer worked out by reasoning; " + NOT16, r="Where to read more: Proffit WR et al. Contemporary Orthodontics. Impacted canines and retained primary teeth.",
+      by=BYR, n="Recalled as \"retained 35 … and the 13 poor prognosis\". It most likely meant the primary canine 53 (the numbers swapped), so the question was rewritten that way. The options are as recalled."),
+ 31: dict(s=8, q="After trauma, a permanent tooth has a cervical root fracture and the coronal fragment shows no mobility. How long is it splinted?",
+      o=["4 weeks", "2 weeks"],
+      e="Root fractures are stabilised with a flexible splint for 4 weeks. Cervical-third fractures may benefit from up to 4 months. 2 weeks is the splint time for subluxation (only if needed for comfort), avulsion and extrusion.",
+      c=cons("S01-Q68") + "." + WARN, r=ref16("S01-Q68"),
+      by=BY, n="Deema said the type of trauma wasn't specified; the question is answered as a root fracture."),
+ 33: dict(s=4, q="Long case: a patient needs anterior crown impressions and has a thin gingival phenotype. What should be considered before the impression?",
+      o=["Gentle gingival displacement with a small-diameter cord to avoid recession", "Electrosurgical troughing of the sulcus", "Double-cord technique with large cords", "Firmly packing an epinephrine cord"],
+      e="Thin gingiva recedes easily after trauma, so displacement must be gentle: a small-diameter cord, placed lightly and for a short time. Electrosurgery, large cords and firm packing all risk permanent recession at the visible margin.",
+      c=conf("S05-Q2"), r=ref16("S05-Q2"),
+      by=BYR, n="Deema couldn't recall the options, only that \"thin retraction cord\" wasn't one of them; the options were written in."),
+}
+for k, v in REPL.items(): Q[k-1] = v
+Q += [
+ dict(s=13, q="Calculation case: a 20-kg child needs ibuprofen at 10 mg/kg per dose. What is the single dose?",
+      o=["200 mg", "100 mg", "400 mg", "20 mg"],
+      e="10 mg/kg × 20 kg = 200 mg per dose, every 6–8 hours. The usual paediatric range is 4–10 mg/kg per dose.",
+      c=cons("S10-Q61"), r=ref16("S10-Q61"),
+      by=BYR, n="The recall only said there were two calculation cases, one on ibuprofen; the numbers here are an example of that type."),
+ dict(s=0, q="Calculation case: what is the diameter 16 mm from the tip (D16) of a size 30 file with a 0.04 taper?",
+      o=["0.94 mm", "0.62 mm", "0.46 mm", "1.10 mm"],
+      e="Diameter = tip size + (distance × taper) = 0.30 + (16 × 0.04) = 0.30 + 0.64 = 0.94 mm.",
+      c="Consistent with Rafi' Al-Maqam 16 file-dimension questions (S01-Q67)", r=ref16("S01-Q67"),
+      by=BYR, n="The recall only said the second calculation case was about a file; the numbers here are an example of that type."),
+ dict(s=0, q="Long scenario: a tooth has a necrotic pulp, an apical radiolucency and a narrow isolated pocket tracking to the apex. What is the first treatment?",
+      o=["Root canal treatment, then reassess the periodontal defect", "Periodontal surgery first", "Extraction", "Scaling and root planing only"],
+      e="This is a primary endodontic lesion. The pocket is a sinus tract draining along the PDL and often heals after root canal treatment alone, so endodontic treatment comes first and the periodontium is re-evaluated after healing.",
+      c=cons("S01-Q32-B"), r=ref16("S01-Q32-B"),
+      by=BYR, n="The recall only said \"long scenario endo-perio lesion\"; the question was written around the usual version of this case."),
+ dict(s=4, q="Long scenario: a single crown is planned on tooth 36 in a patient with normal anterior guidance. Which articulator is appropriate?",
+      o=["Semi-adjustable articulator", "Fully adjustable articulator", "Simple hinge articulator", "No articulator is needed"],
+      e="A semi-adjustable articulator with a facebow reproduces condylar guidance well enough for routine fixed work. A fully adjustable articulator with pantographic records is reserved for complex full-mouth rehabilitation.",
+      c="Consistent with Rafi' Al-Maqam 16 articulator questions (S06-Q69)", r=ref16("S06-Q69"),
+      by=BYR, n="The recall only said \"long scenario about 36 molar, fully adjustable / semi adjustable\"; the scenario was written in."),
+]
+
 rng = random.Random(2010)
 out, img = [], {}
 for n, d in enumerate(Q, 1):
