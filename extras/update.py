@@ -32,4 +32,4 @@ print('cache ->',v+1)
 # Re-add our own extra banks (not in the friend's file)
 import subprocess, os
 if os.path.exists('/home/claude/tools/deema.json'):
-    subprocess.run(['python3','/home/claude/tools/deema_inject.py',repo+'/index.html','/home/claude/tools/deema.json'],check=True)
+    subprocess.run(['python3','/home/claude/tools/oct_extras.py',repo+'/index.html','/home/claude/tools/deema.json'],check=True)
