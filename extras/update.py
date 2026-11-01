@@ -33,3 +33,5 @@ print('cache ->',v+1)
 import subprocess, os
 if os.path.exists('/home/claude/tools/deema.json'):
     subprocess.run(['python3','/home/claude/tools/oct_extras.py',repo+'/index.html','/home/claude/tools/deema.json'],check=True)
+if os.path.exists('/home/claude/tools/kmz/kmz.json'):
+    subprocess.run(['python3','/home/claude/tools/kmz_extras.py',repo+'/index.html','/home/claude/tools/kmz/kmz.json'],check=True)
