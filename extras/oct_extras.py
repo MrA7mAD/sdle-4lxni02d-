@@ -49,7 +49,7 @@ helper = ('/*SRC-FILTER*/function srcOf(q){const b=(q.by||"").replace(/\\s*·\\s
           'function openSetup(o){')
 sub1("function openSetup(o){", helper)
 sub1("const st={secs:new Set(o.secs),",
-     "const SRCL=B.id===\"oct\"?srcList():[];const st={src:new Set(SRCL.map(x=>x[0])),secs:new Set(o.secs),")
+     "const SRCL=(B.id===\"oct\"||B.id===\"nov\")?srcList():[];const st={src:new Set(SRCL.map(x=>x[0])),secs:new Set(o.secs),")
 sub1("ids=ids.filter(i=>{const q=Q[i];",
      "ids=ids.filter(i=>{const q=Q[i];if(SRCL.length&&!st.src.has(srcOf(q)))return false;")
 sub1("'<div class=\"fld\"><span class=\"lb\">Questions</span>'",

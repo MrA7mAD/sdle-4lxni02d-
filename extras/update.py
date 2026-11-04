@@ -35,3 +35,5 @@ if os.path.exists('/home/claude/tools/deema.json'):
     subprocess.run(['python3','/home/claude/tools/oct_extras.py',repo+'/index.html','/home/claude/tools/deema.json'],check=True)
 if os.path.exists('/home/claude/tools/kmz/kmz.json'):
     subprocess.run(['python3','/home/claude/tools/kmz_extras.py',repo+'/index.html','/home/claude/tools/kmz/kmz.json'],check=True)
+if os.path.exists('/home/claude/tools/nov.json'):
+    subprocess.run(['python3','/home/claude/tools/nov_extras.py',repo+'/index.html','/home/claude/tools/nov.json'],check=True)
