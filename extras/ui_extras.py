@@ -4,6 +4,7 @@ p = sys.argv[1]
 s = open(p, encoding="utf-8").read()
 if "/*AUTOHIDE-SIDE*/" in s:
     print("autohide already present"); sys.exit(0)
+css0 = "\n/*CENTER-QUIZ*/\n.quizmode .wrap{max-width:72ch}\n"
 css = """
 /*AUTOHIDE-SIDE*/
 @media (hover:hover) and (pointer:fine) and (min-width:821px){
@@ -22,6 +23,6 @@ css = """
 }
 """
 i = s.index("</style>")
-s = s[:i] + css + s[i:]
+s = s[:i] + css0 + css + s[i:]
 open(p, "w", encoding="utf-8").write(s)
 print("autohide sidebar added")
