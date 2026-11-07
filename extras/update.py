@@ -38,3 +38,4 @@ if os.path.exists('/home/claude/tools/kmz/kmz.json'):
 if os.path.exists('/home/claude/tools/nov.json'):
     subprocess.run(['python3','/home/claude/tools/nov_extras.py',repo+'/index.html','/home/claude/tools/nov.json'],check=True)
 subprocess.run(['python3','/home/claude/tools/ui_extras.py',repo+'/index.html'],check=True)
+subprocess.run(['python3','/home/claude/tools/sync_extras.py',repo+'/index.html'],check=True)
