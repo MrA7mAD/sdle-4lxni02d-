@@ -61,6 +61,19 @@ async function run(){
       const m=merge(loc,rem);
       if(!loc||sig(m)!==sig(loc)){st(key,JSON.stringify(m));if(typeof B!=="undefined"&&B&&B.ls===key)curChanged=true}
       if(!rem||sig(m)!==sig(rem))files[fname]={content:JSON.stringify(m)}}
+    let curS=false;
+    for(const bid in BANKS){const sk=BANKS[bid].lss,tk="sdle-sync-st-"+bid,fname="sdle-"+bid+"-session.json";
+      const locS=g(sk),lt=+g(tk)||0;let rem=null;try{const t=await fileText(gist.files&&gist.files[fname]);rem=t?JSON.parse(t):null}catch(e){}
+      if(!locS&&!rem)continue;
+      if(rem&&rem.t>lt){
+        const isCur=typeof B!=="undefined"&&B&&B.id===bid;
+        if(isCur&&typeof V!=="undefined"&&V&&V.name==="quiz")continue;
+        let qn=-1;try{qn=loadBank(bid).q.length}catch(e){}
+        if(rem.qn!==qn)continue;
+        st(sk,rem.s);st(tk,String(rem.t));if(isCur){try{S=JSON.parse(rem.s)}catch(e){}curS=true}}
+      else if(locS&&(!rem||lt>rem.t)){let qn=-1;try{qn=loadBank(bid).q.length}catch(e){}
+        files[fname]={content:JSON.stringify({t:lt||1,qn,s:locS})}}}
+    if(curS&&!curChanged){try{if(typeof V!=="undefined"&&V&&V.name==="home"&&typeof go==="function")go("home")}catch(e){}}
     if(Object.keys(files).length)await api("/gists/"+id,{method:"PATCH",body:JSON.stringify({files})});
     st(LK,String(Date.now()));lastErr="";
     if(curChanged){try{P=normB(JSON.parse(g(B.ls)),B.id);renderSide();
@@ -70,6 +83,7 @@ async function run(){
 function soon(){if(!on())return;clearTimeout(timer);timer=setTimeout(run,4000)}
 // push a few seconds after the app saves
 const origSave=save;save=function(){const r=origSave.apply(this,arguments);soon();return r};
+const origSaveS=saveS;saveS=function(){const r=origSaveS.apply(this,arguments);try{if(B)st("sdle-sync-st-"+B.id,String(Date.now()))}catch(e){}soon();return r};
 function ago(t){if(!t)return"never";const s=Math.round((Date.now()-t)/1000);return s<60?"just now":s<3600?Math.round(s/60)+" min ago":s<86400?Math.round(s/3600)+" h ago":new Date(t).toLocaleDateString()}
 window.syncRow=function(){
   if(!on())return '<div class="set-row" id="syncrow"><div><b>Sync PC and iPad</b><p>Off on this device. Turn it on with your private GitHub key to keep progress the same on your own devices. Other people using this link are not affected.</p></div><button class="btn" data-sync="on">Set up</button></div>';
