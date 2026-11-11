@@ -10,7 +10,7 @@ m = re.search(r'<script id="bankoct" type="application/json">.*?</script>', s, r
 s = s[:m.start()] + '<script id="banknov" type="application/json">' + payload + '</script>\n' + s[m.start():]
 m = re.search(r'"oct":\{id:"oct".*?secs:(\[\[.*?\]\])\},', s, re.S); assert m
 entry = (' "nov":{id:"nov",tag:"Nov",name:"November 2026 Recalls",'
-         'blurb:"Recalls from the November 2026 exams, including the 2 Nov and 4 Nov exams, written up as multiple choice and checked against Rafi\' Al-Maqam 16.",'
+         'blurb:"Recalls from the November 2026 exams, including the 2 Nov and 4 Nov exams and Alotaibi\'s recall, written up as multiple choice and checked against Rafi\' Al-Maqam 16.",'
          'doc:"progressnov",ls:"sdle-nov26-progress-v1",lss:"sdle-nov26-session-v1",kindFilter:null,\n   secs:' + m.group(1) + '},\n')
 s = s[:m.start()] + entry + s[m.start():]
 s, k = re.subn(r'const ORDER=\[', 'const ORDER=["nov",', s, count=1); assert k == 1

@@ -149,7 +149,8 @@ Q4 = n4.Q4(ref16, conf, cons, NOT16)
 IMGDIR = "/home/claude/nov14/im/"
 rng = random.Random(211)
 out, img = [], {}
-for prefix, LIST in (("NOV-", Q), ("NOV4-", Q4)):
+spa = importlib.util.spec_from_file_location("nova", "/home/claude/tools/nova.py"); na = importlib.util.module_from_spec(spa); spa.loader.exec_module(na)
+for prefix, LIST in (("NOV-", Q), ("NOV4-", Q4), ("NOVA-", na.QA)):
     for k, d in enumerate(LIST, 1):
         o = d["o"]; idx = list(range(len(o))); rng.shuffle(idx)
         qid = prefix + str(k)
@@ -157,9 +158,13 @@ for prefix, LIST in (("NOV-", Q), ("NOV4-", Q4)):
         for f in ("c", "r", "by", "n", "rep"):
             if d.get(f): q[f] = d[f]
         if d.get("img"):
-            im = Image.open(IMGDIR + d["img"]).convert("RGB"); im.thumbnail((900, 900))
+            im = Image.open(d["img"] if d["img"].startswith("/") else IMGDIR + d["img"]).convert("RGB"); im.thumbnail((900, 900))
             buf = io.BytesIO(); im.save(buf, "WEBP", quality=80)
             img[qid + "_0"] = "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode(); q["pi"] = [qid + "_0"]
+        if d.get("xi"):
+            im = Image.open(d["xi"]).convert("RGB"); im.thumbnail((900, 900))
+            buf = io.BytesIO(); im.save(buf, "WEBP", quality=80)
+            img[qid + "_x"] = "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode(); q["xi"] = [qid + "_x"]
         out.append(q)
 json.dump({"q": out, "img": img}, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 print(len(out), "November questions,", len(img), "images")
