@@ -2,11 +2,9 @@
 # Usage: python3 book_refs.py index.html extras/book_*.json   (idempotent: same result if run twice)
 import json, re, sys
 html, files = sys.argv[1], sys.argv[2:]
-E = {}
-for f in files:
-    for k, v in json.load(open(f, encoding="utf-8")).items(): E.setdefault(k, {}).update(v)
 s = open(html, encoding="utf-8").read()
 done = set()
+E = {}
 def patch(m):
     d = json.loads(m.group(2)); changed = False
     for q in d["q"]:
@@ -31,7 +29,10 @@ def patch(m):
         done.add(q["i"]); changed = True
     if not changed: return m.group(0)
     return m.group(1) + json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + m.group(3)
-s = re.sub(r'(<script id="bank\w+" type="application/json">)(.*?)(</script>)', patch, s, flags=re.S)
+for f in files:  # one book at a time, so two books can reference the same question
+    E = json.load(open(f, encoding="utf-8"))
+    s = re.sub(r'(<script id="bank\w+" type="application/json">)(.*?)(</script>)', patch, s, flags=re.S)
+    missing = [k for k in E if k not in done]
+    print(f, "missing:", missing[:10])
 open(html, "w", encoding="utf-8").write(s)
-missing = [k for k in E if k not in done]
-print("book refs applied:", len(done), "missing:", missing[:10])
+print("book refs applied:", len(done))
