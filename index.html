@@ -263,6 +263,9 @@ input[type=number]{width:90px;padding:7px 10px;border:1px solid var(--line);bord
 @media (min-width:821px) and (prefers-reduced-motion:reduce){
   html.ah .side,html.ah .side>*{transition:none}
 }
+
+/*QUIZ-SIZE*/
+.quizmode main .wrap{zoom:var(--qz,1)}
 </style>
 <script>if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
 </head>
@@ -868,6 +871,7 @@ function settings(){
    '<div class="set-row"><div><b>Shuffle answer options</b><p>Randomise A–D order in new sessions so you learn the answer, not its position.</p></div><button class="switch'+(P.set.shuffle?" on":"")+'" id="shuf" role="switch" aria-checked="'+P.set.shuffle+'" aria-label="Shuffle answer options"></button></div>'+
    '<div class="set-row"><div><b>Appearance</b><p>Follow your device, or pick light or dark.</p></div><div class="seg" style="width:auto">'+[["auto","Auto"],["light","Light"],["dark","Dark"]].map(([v,l])=>'<button data-th="'+v+'" class="'+(th===v?"on":"")+'">'+l+'</button>').join("")+'</div></div>'+
    '<div class="set-row"><div><b>Move progress between devices</b><p>Export a progress file here and import it on your iPad or PC to carry on where you left off. Covers all banks.</p></div><button class="btn" data-xfer>Export / import</button></div>'+
+   sizeRow()+
    sideRow()+
    syncRow()+
    '<div class="set-row"><div><b>Reset progress</b><p>Clears every recorded answer and bookmark for '+esc(B.name)+(dbRef?" on this account":" on this device")+'. This cannot be undone.</p></div><button class="btn" id="reset" style="color:var(--bad)">Reset</button></div>'+
@@ -978,6 +982,26 @@ countBanks();
 $("#app").hidden=true;
 showPicker();
 dbHandles();
+
+/*QUIZ-SIZE-JS*/
+{
+const K="sdle-qsize",root=document.documentElement;
+const mode=()=>{try{return localStorage.getItem(K)||"normal"}catch(e){return"normal"}};
+function fit(){const m=mode(),mn=document.querySelector("main");let f=1;
+  if(m!=="normal"&&mn){const w=document.querySelector("main .wrap");
+    const base=(w&&parseFloat(getComputedStyle(w).maxWidth))||740;
+    const cs=getComputedStyle(mn),W=mn.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    const room=Math.max(1,W/base);f=m==="large"?Math.min(1.25,room):Math.min(1.6,room)}
+  root.style.setProperty("--qz",String(Math.round(f*100)/100))}
+addEventListener("resize",fit);
+try{new ResizeObserver(fit).observe(document.body)}catch(e){}
+new MutationObserver(fit).observe(document.body,{attributes:true,attributeFilter:["class"]});
+window.sizeRow=function(){const m=mode(),b=(v,l)=>'<button data-qs="'+v+'" class="'+(m===v?'on':'')+'">'+l+'</button>';
+  return '<div class="set-row" id="qsrow"><div><b>Question size</b><p>Fit screen enlarges the question screen to fill the width, so you don\'t need to zoom. Saved on this device only.</p></div><div class="seg" style="width:auto">'+b("normal","Normal")+b("large","Large")+b("fit","Fit screen")+'</div></div>'};
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-qs]");if(!b)return;
+  try{localStorage.setItem(K,b.dataset.qs)}catch(x){}fit();const r=document.getElementById("qsrow");if(r)r.outerHTML=window.sizeRow()});
+fit();
+}
 
 /*AUTOHIDE-JS*/
 {
