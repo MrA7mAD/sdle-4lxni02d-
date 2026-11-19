@@ -1,6 +1,6 @@
 // Offline support: keep a copy of the app on the device.
-// Opens instantly from the saved copy, then quietly checks for a newer version online.
-const CACHE = "sdle-v26";
+// The page checks online first (a quick check when nothing changed) and uses the saved copy when offline or slow.
+const CACHE = "sdle-v27";
 const CORE = ["./", "./index.html"];
 
 self.addEventListener("install", e => {
@@ -20,6 +20,11 @@ self.addEventListener("fetch", e => {
     const key = isPage ? "./index.html" : req;
     const hit = await c.match(key);
     const net = fetch(isPage ? new Request(req.url, {cache: "no-cache"}) : req).then(r => { if (r && (r.ok || r.type === "opaque")) c.put(key, r.clone()); return r; }).catch(() => null);
+    if (hit && isPage) {
+      e.waitUntil(net);
+      const quick = await Promise.race([net, new Promise(r => setTimeout(() => r(null), 4000))]);
+      return quick || hit;
+    }
     if (hit) { e.waitUntil(net); return hit; }
     return (await net) || new Response("Offline and not saved yet. Open once while online.", {status: 503});
   }));
