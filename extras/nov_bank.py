@@ -150,7 +150,8 @@ IMGDIR = "/home/claude/nov14/im/"
 rng = random.Random(211)
 out, img = [], {}
 spa = importlib.util.spec_from_file_location("nova", "/home/claude/tools/nova.py"); na = importlib.util.module_from_spec(spa); spa.loader.exec_module(na)
-for prefix, LIST in (("NOV-", Q), ("NOV4-", Q4), ("NOVA-", na.QA)):
+sps = importlib.util.spec_from_file_location("novs", "/home/claude/tools/novs.py"); ns = importlib.util.module_from_spec(sps); sps.loader.exec_module(ns)
+for prefix, LIST in (("NOV-", Q), ("NOV4-", Q4), ("NOVA-", na.QA), ("NOVS-", ns.QS)):
     for k, d in enumerate(LIST, 1):
         o = d["o"]; idx = list(range(len(o))); rng.shuffle(idx)
         qid = prefix + str(k)

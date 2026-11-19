@@ -44,7 +44,7 @@ sub1('const LSB="sdle-current-bank"',
 # ---- 3. "Source exam" filter in the setup popup (October bank only) ----
 helper = ('/*SRC-FILTER*/function srcOf(q){const b=(q.by||"").replace(/\\s*·\\s*rebuilt$/,"");return(!b||b==="Rebuilt question")?"Nadine\'s recalls":b}\n'
           'function srcList(){const m={};Q.forEach(q=>{const k=srcOf(q);m[k]=(m[k]||0)+1});'
-          'const day=k=>{const x=k.match(/^(\\d+) Oct/);return x?+x[1]:0};'
+          'const day=k=>{const x=k.match(/^(\\d+) (Oct|Nov)/);return x?+x[1]:0};'
           'return Object.keys(m).sort((a,b)=>day(a)-day(b)||a.localeCompare(b)).map(k=>[k,m[k]])}\n'
           'function openSetup(o){')
 sub1("function openSetup(o){", helper)
