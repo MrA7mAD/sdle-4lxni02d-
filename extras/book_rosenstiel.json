@@ -175,7 +175,9 @@
 "ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 12 (Restoration of the Endodontically Treated Tooth), p. 316"
 },
 "R19-Fixed-16": {
-"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 5 (Periodontal Considerations), p. 154"
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 5 (Periodontal Considerations), p. 154",
+"ans": "Supragingival margin",
+"c": "Corrected per Contemporary Fixed Prosthodontics 6e p. 154: gingival health is best maintained with supragingival margins; subgingival margins are used only when esthetics, caries or retention require them."
 },
 "R19-Fixed-18": {
 "ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 5 (Periodontal Considerations), p. 159"
@@ -622,5 +624,55 @@
 "SAL-110": {
 "ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 5 (Periodontal Considerations), p. 159",
 "n": "Contemporary Fixed Prosthodontics 6e: the biologic width is measured by sounding to bone with a probe under local anesthesia (p. 154), and a bitewing radiograph can confirm a violation (p. 159). Both a probe and a bitewing are reasonable, so check which one your key expects."
+},
+"R19-Fixed-27": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 4 (Principles of Occlusion), p. 134",
+"ans": "full coverage with anterior posterior contact",
+"c": "Corrected per Contemporary Fixed Prosthodontics 6e p. 134: an occlusal device covers the arch with even contact from all opposing teeth in centric relation, plus anterior guidance in excursions. A device with no contact doesn't protect the teeth."
+},
+"R19-Fixed-34": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 29 (Evaluation, Characterization, and Glazing), p. 820",
+"n": "Contemporary Fixed Prosthodontics 6e p. 820: proximal contacts are checked first at try-in, because an overcontoured (too heavy) contact is the usual reason a finished crown won't seat when the metal coping did."
+},
+"SAL-272": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 4 (Principles of Occlusion), p. 134",
+"ans": "full coverage with anterior posterior contact",
+"c": "Corrected per Contemporary Fixed Prosthodontics 6e p. 134: an occlusal device covers the arch with even contact from all opposing teeth in centric relation, plus anterior guidance in excursions. A device with no contact doesn't protect the teeth."
+},
+"SAL-555": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 2 (Diagnostic Procedures), p. 68",
+"ans": "Mesial inclination of the upper",
+"c": "Corrected per Contemporary Fixed Prosthodontics 6e p. 68: a slide forward and up from centric relation comes from contacts on the mesial inclines of maxillary cusps (and distal inclines of mandibular cusps). On a new upper crown you adjust its mesial incline. This matches SAL-260."
+},
+"SAL-560": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 4 (Principles of Occlusion), p. 116",
+"ans": "Decreased Freeway space",
+"c": "Corrected: soreness with premature contacts after treatment points to excessive vertical dimension, which means a decreased freeway (interocclusal rest) space. A decreased vertical dimension gives the opposite (excess freeway space). This matches KMZ-FIX-124 and S05-Q78-A."
+},
+"KMZ-FIX-129": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 5 (Periodontal Considerations), p. 154",
+"n": "Contemporary Fixed Prosthodontics 6e: the biologic width is measured by sounding to bone with a probe under local anesthesia (p. 154), and a bitewing radiograph can confirm a violation (p. 159). Both a probe and a bitewing are reasonable, so check which one your key expects."
+},
+"SAUD-1591": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 29 (Evaluation, Characterization, and Glazing), p. 820",
+"n": "Contemporary Fixed Prosthodontics 6e p. 820: proximal contacts are checked first at try-in, because an overcontoured (too heavy) contact is the usual reason a finished crown won't seat when the metal coping did."
+},
+"SAL-260": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 2 (Diagnostic Procedures), p. 68"
+},
+"KMZ-FIX-35": {
+"ref": "Contemporary Fixed Prosthodontics, 6th ed., ch. 2 (Diagnostic Procedures), p. 68"
+},
+"SEP-Sultan-40": {
+"n": "⚠ A fracture running from the mesial to the distal marginal ridge with a mobile segment describes a split tooth, which is usually extracted (or the mobile segment removed). A core and crown suits a cracked tooth whose segments are not separable. Check this one."
+},
+"JA-Jul-56": {
+"n": "⚠ The November bank (NOVA-26) and most pedo texts protect an erupted dens evaginatus (sealant/composite or gradual reduction) rather than just monitoring, because the tubercle fractures easily and exposes the pulp horn."
+},
+"SAUD-865": {
+"n": "⚠ The same recall appears in the Salem bank (SAL-263) with \"mobile crown\" as the answer. Metallic taste with pain after a cast post, with no mobility or radiolucency, is debated between a loose crown leaking and an early vertical root fracture."
+},
+"SAL-263": {
+"n": "⚠ The same recall appears in the Saudi bank (SAUD-865) with \"vertical root fracture\" as the answer. Check which your key expects."
 }
 }
