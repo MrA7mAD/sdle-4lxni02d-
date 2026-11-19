@@ -40,3 +40,7 @@ if os.path.exists('/home/claude/tools/nov.json'):
 subprocess.run(['python3','/home/claude/tools/ui_extras.py',repo+'/index.html'],check=True)
 subprocess.run(['python3','/home/claude/tools/size_extras.py',repo+'/index.html'],check=True)
 subprocess.run(['python3','/home/claude/tools/sync_extras.py',repo+'/index.html'],check=True)
+# Textbook checks (references, corrections) — run last
+import glob
+books=sorted(glob.glob('/home/claude/tools/book_*.json'))
+if books: subprocess.run(['python3','/home/claude/tools/book_refs.py',repo+'/index.html']+books,check=True)
