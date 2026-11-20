@@ -288,7 +288,7 @@
 },
 "NOVA-6": {
 "ref": "McCracken's Removable Partial Prosthodontics, 12th ed., ch. 7 (Direct Retainers), p. 74",
-"c": "Supported by McCracken 12e p. 74 and p. 80: bar clasps suit tooth-supported RPDs, and an I-bar engages an undercut in the middle of the buccal surface; circumferential clasps cover more tooth and show more metal."
+"c": "Supported by McCracken 12e p. 74 and p. 80: bar clasps can be used on tooth-supported RPDs, and an I-bar engages an undercut in the middle of the buccal surface. Note that Rafi' 16 (S06-Q66) picks a circumferential clasp for a Class III mid-buccal undercut when nothing contraindicates a suprabulge clasp; both designs are acceptable."
 },
 "NOVA-24": {
 "ref": "McCracken's Removable Partial Prosthodontics, 12th ed., ch. 3 (Classification of Partially Edentulous Arches), p. 17"
@@ -579,5 +579,12 @@
 },
 "KMZ-REM-106": {
 "n": "McCracken 12e p. 273: the opposing pairs that wear best are porcelain against porcelain, gold against natural or restored teeth, and gold against gold. Porcelain isn't among the options here."
+},
+"R19-Removable-54": {
+"n": "⚠ McCracken 12e p. 175: a unilateral RPD is strongly discouraged; a bounded space like 25–26 is usually replaced with an FPD or implants. If an RPD is made, every abutment needs a rest, plus clasps and a major connector for cross-arch stability (p. 57, p. 69). \"No need for clasp\" isn't supported by the book; check this one.",
+"ref": "McCracken's Removable Partial Prosthodontics, 12th ed., ch. 12 (Diagnosis and Treatment Planning), p. 175"
+},
+"SAUD-365": {
+"n": "⚠ When the tuberosity and retromolar pad touch on closure, the usual answer is surgical reduction of the (often fibrous) maxillary tuberosity. The retromolar pad is a stable landmark that the denture base covers and is not reduced. Check this one."
 }
 }
