@@ -16,7 +16,8 @@ s = s.replace("\n   sizeRow()+", "")
 
 css = """
 /*QUIZ-SIZE-V3*/
-html.qz body.quizmode main .wrap{max-width:none;width:var(--qw);margin-left:var(--qx);margin-right:0;zoom:var(--qz);font-size:16px}
+html.qz body.quizmode main .wrap{max-width:none;width:var(--qw);margin-left:var(--qx);margin-right:0;zoom:var(--qz)}
+html.qz body.quizmode main .wrap :is(.opt,.expl,.qnav){font-size:1rem}
 html.qz.qzr{font-size:var(--qf)}
 """
 i = s.index("</style>"); s = s[:i] + css + s[i:]
