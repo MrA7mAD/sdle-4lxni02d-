@@ -97,6 +97,7 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
 // sync on open and whenever the app comes back to the foreground
 if(on())setTimeout(run,1500);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&on()){clearTimeout(timer);timer=setTimeout(run,800)}});
+window.addEventListener("online",()=>{if(on()){clearTimeout(timer);timer=setTimeout(run,1500)}});
 }
 """
 anchor = "showPicker();\ndbHandles();\n})();"
