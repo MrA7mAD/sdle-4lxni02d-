@@ -1,6 +1,6 @@
 // Offline support: keep a copy of the app on the device.
 // The page checks online first (a quick check when nothing changed) and uses the saved copy when offline or slow.
-const CACHE = "sdle-v34";
+const CACHE = "sdle-v35";
 const CORE = ["./", "./index.html"];
 
 self.addEventListener("install", e => {

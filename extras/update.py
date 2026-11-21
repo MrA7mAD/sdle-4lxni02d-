@@ -42,5 +42,5 @@ subprocess.run(['python3','/home/claude/tools/size_extras.py',repo+'/index.html'
 subprocess.run(['python3','/home/claude/tools/sync_extras.py',repo+'/index.html'],check=True)
 # Textbook checks (references, corrections) — run last
 import glob
-books=sorted(glob.glob('/home/claude/tools/book_*.json'))
-if books: subprocess.run(['python3','/home/claude/tools/book_refs.py',repo+'/index.html']+books,check=True)
+books=sorted(glob.glob(repo+'/extras/book_*.json'))
+if books: subprocess.run(['python3',repo+'/extras/book_refs.py',repo+'/index.html']+books,check=True)

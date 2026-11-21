@@ -1,0 +1,691 @@
+{
+"S01-Q136-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 424"
+},
+"S02-Q2-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"S02-Q2-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 390"
+},
+"S02-Q2-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"S02-Q2-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 224"
+},
+"S02-Q4": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10"
+},
+"S02-Q8": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 464"
+},
+"S02-Q15-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"S02-Q15-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 5 (Fundamental Concepts of Enamel and Dentin Adhesion), p. 155"
+},
+"S02-Q15-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 5 (Fundamental Concepts of Enamel and Dentin Adhesion), p. 155"
+},
+"S02-Q15-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 473"
+},
+"S02-Q15-H": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"S02-Q18": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 481"
+},
+"S02-Q21-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q21-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q22-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 107"
+},
+"S02-Q22-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 427"
+},
+"S02-Q22-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 418"
+},
+"S02-Q22-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 107"
+},
+"S02-Q22-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 418"
+},
+"S02-Q22-H": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 102"
+},
+"S02-Q24": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e19 (online chapter)"
+},
+"S02-Q28-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e23 (online chapter)"
+},
+"S02-Q28-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e23 (online chapter)"
+},
+"S02-Q28-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e23 (online chapter)"
+},
+"S02-Q29-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 16 (Resin-Bonded Splints and Bridges), p. e56 (online chapter)"
+},
+"S02-Q29-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 20"
+},
+"S02-Q29-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 405"
+},
+"S02-Q29-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 424"
+},
+"S02-Q29-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 405"
+},
+"S02-Q32-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 108"
+},
+"S02-Q32-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 258"
+},
+"S02-Q32-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 127"
+},
+"S02-Q32-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"S02-Q32-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 375"
+},
+"S02-Q32-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 224"
+},
+"S02-Q32-H": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 87"
+},
+"S02-Q36-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 107"
+},
+"S02-Q36-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 276"
+},
+"S02-Q38": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 43"
+},
+"S02-Q41": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e4 (online chapter)"
+},
+"S02-Q42-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 18 (Class II Cast-Metal Restorations), p. e139 (online chapter)"
+},
+"S02-Q42-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 365"
+},
+"S02-Q42-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 367"
+},
+"S02-Q42-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 104"
+},
+"S02-Q42-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 367"
+},
+"S02-Q42-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. 14"
+},
+"S02-Q42-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 427"
+},
+"S02-Q49-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q49-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 63"
+},
+"S02-Q49-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 87"
+},
+"S02-Q49-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 258"
+},
+"S02-Q49-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 253"
+},
+"S02-Q49-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"S02-Q49-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q65": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 43"
+},
+"S02-Q68": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 129"
+},
+"S02-Q72": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. e41 (online chapter)"
+},
+"S02-Q80-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 104"
+},
+"S02-Q80-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 237"
+},
+"S02-Q80-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 237"
+},
+"S02-Q80-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"S02-Q80-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q81": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"S02-Q82": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 130"
+},
+"S02-Q87": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 396"
+},
+"S02-Q94": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 130"
+},
+"S02-Q96": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 239"
+},
+"S02-Q97": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e7 (online chapter)"
+},
+"S02-Q100": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 130"
+},
+"S02-Q101": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"S02-Q102": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 278"
+},
+"S02-Q106": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 393"
+},
+"S02-Q107-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"S02-Q107-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"S02-Q107-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"S02-Q107-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"S02-Q108": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 16 (Resin-Bonded Splints and Bridges), p. e56 (online chapter)"
+},
+"S02-Q110": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 87"
+},
+"S02-Q115-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 132"
+},
+"S02-Q115-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e4 (online chapter)"
+},
+"S02-Q115-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e4 (online chapter)"
+},
+"S02-Q115-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 239"
+},
+"S02-Q115-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 132"
+},
+"S02-Q118": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 297"
+},
+"S02-Q121": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"S02-Q125-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 43"
+},
+"S02-Q125-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 71"
+},
+"S02-Q125-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 71"
+},
+"S02-Q125-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 70"
+},
+"S02-Q125-H": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 77"
+},
+"S02-Q127": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 81"
+},
+"S02-Q130-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 98"
+},
+"S02-Q130-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 286"
+},
+"S02-Q130-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 75"
+},
+"S02-Q130-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 282"
+},
+"S02-Q130-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 286"
+},
+"S02-Q130-H": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 43"
+},
+"S02-Q131-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 280"
+},
+"S02-Q131-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 280"
+},
+"S02-Q131-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 71"
+},
+"S02-Q131-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 279"
+},
+"S02-Q131-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 277"
+},
+"S02-Q139": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 115"
+},
+"S02-Q142-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 104"
+},
+"S02-Q142-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"S02-Q142-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 258"
+},
+"S02-Q142-E": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 388"
+},
+"S02-Q142-F": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"S02-Q142-G": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 89"
+},
+"S02-Q145": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 5 (Fundamental Concepts of Enamel and Dentin Adhesion), p. 157"
+},
+"S03-Q109-A": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e2 (online chapter)"
+},
+"S03-Q109-B": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e2 (online chapter)"
+},
+"S03-Q109-C": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e2 (online chapter)"
+},
+"S03-Q109-D": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e2 (online chapter)"
+},
+"S05-Q74": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 481"
+},
+"S05-Q124": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 286"
+},
+"S09-Q82": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 113"
+},
+"S10-Q306": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 82"
+},
+"R19-Resto-5": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 486"
+},
+"R19-Resto-24": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 485"
+},
+"R19-Resto-26": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"R19-Resto-29": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 20"
+},
+"R19-Resto-42": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 485"
+},
+"SEP-Muath-6": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"SEP-Muath-34": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 475"
+},
+"SEP-Muath-42": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 471"
+},
+"SEP-Muath-46": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 120"
+},
+"SEP-Sultan-16": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 7 (Color and Shade Matching in Operative Dentistry), p. 205"
+},
+"SEP-Sultan-20": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 422"
+},
+"SEP-Sultan-24": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 113"
+},
+"SEP-Sultan-30": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"SEP-Sultan-41": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 422"
+},
+"SEP-Sultan-47": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116",
+"ans": "Replace the restoration (or remove the stained margin and repair it)",
+"n": "⚠ Corrected per Sturdevant 7e p. 116: superficial marginal staining of a bonded restoration is corrected by a shallow, narrow marginal repair; deep staining → replacement. Microabrasion is for enamel surface defects."
+},
+"SEP-Sultan-71": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 82"
+},
+"SEP-Rakan-26": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 422"
+},
+"SEP-Rakan-31": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 286"
+},
+"SEP-Rakan-47": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 105"
+},
+"SEP-Rakan-69": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"JA-Jul-19": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 82"
+},
+"JA-Jul-30": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 475"
+},
+"JA-Jul-50": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 278"
+},
+"JA-Jul-51": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 278"
+},
+"JA-Jul-153": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 11 (Periodontology Applied to Operative Dentistry), p. 422"
+},
+"JA-Jul-194": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 82"
+},
+"JA-Jul-212": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 26"
+},
+"JA-Jul-213": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 104"
+},
+"JA-Jul-214": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 101"
+},
+"JA-Jul-231": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 82"
+},
+"JA-Jul-327": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 108"
+},
+"JA-Jul-341": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 108"
+},
+"JA-Jul-387": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 237"
+},
+"JA-Jul-388": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"JA-Aug-58": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 503"
+},
+"JA-Aug-77": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 108"
+},
+"JA-Aug-172": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 503"
+},
+"SAUD-28": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 299"
+},
+"SAUD-47": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. e36 (online chapter)"
+},
+"SAUD-214": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 362"
+},
+"SAUD-778": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"SAUD-967": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 7 (Color and Shade Matching in Operative Dentistry), p. 205"
+},
+"SAUD-1441": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 483"
+},
+"SAUD-1526": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 279"
+},
+"SAUD-1651": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10"
+},
+"SAUD-1843": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"SAUD-2217": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 14 (Instruments and Equipment for Tooth Preparation), p. e4 (online chapter)"
+},
+"SAUD-2310": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116",
+"ans": "replace the whole amalgam",
+"n": "Sturdevant 7e p. 116 (with p. 102): marginal ditching deeper than 0.5 mm that predisposes to caries is an indication to replace the amalgam."
+},
+"SAUD-2486": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. e30 (online chapter)"
+},
+"NOV4-76": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"NOVA-9": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 70"
+},
+"OCT10-42": {
+"n": "⚠ Recalls disagree (amalgam expansion vs undetected pulp exposure); Sturdevant 7e doesn't address this scenario directly. Deep undercuts in dentinal line angles near the pulp point most to a mechanical pulp exposure."
+},
+"OCT14-2": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 360"
+},
+"OCT14-90": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 128"
+},
+"DEEMA-7": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 8 (Clinical Technique for Direct Composite Resin and Glass Ionomer Restorations), p. 246"
+},
+"SAL-023": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"SAL-090": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 104"
+},
+"SAL-455": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 489"
+},
+"SAL-456": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 485"
+},
+"SAL-461": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 487"
+},
+"SAL-466": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 485"
+},
+"SAL-468": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"SAL-471": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"SAL-474": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 9 (Additional Conservative Esthetic Procedures), p. 280"
+},
+"SAL-480": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 476"
+},
+"SCL-12": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 114"
+},
+"R19-Resto-7": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 6",
+"ans": "Spindles",
+"n": "⚠ Corrected per Sturdevant 7e p. 6: pain during preparation limited to enamel is explained by enamel spindles (odontoblastic processes crossing the DEJ), not tufts."
+},
+"R19-Resto-27": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 6"
+},
+"SAUD-5": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 6",
+"n": "⚠ Sturdevant 7e p. 6 names enamel spindles for pain limited to enamel; spindles are not among these options."
+},
+"SAUD-313": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 6",
+"ans": "Enamel spindle",
+"n": "⚠ Corrected per Sturdevant 7e p. 6: enamel spindles may act as pain receptors, explaining sensitivity during preparation confined to enamel."
+},
+"SAUD-1361": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 6",
+"ans": "Spindel",
+"n": "⚠ Corrected per Sturdevant 7e p. 6: enamel spindles may act as pain receptors, explaining sensitivity during preparation confined to enamel."
+},
+"R19-Resto-28": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10",
+"ans": "Reparative dentin",
+"n": "⚠ Corrected per Sturdevant 7e p. 10: after a strong injury/pulp exposure, secondary odontoblast-like cells form reparative (tertiary) dentin — not secondary dentin."
+},
+"SAUD-1501": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10"
+},
+"SAUD-1502": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10"
+},
+"SAL-142": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 10"
+},
+"SAUD-2195": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116",
+"ans": "replaced the amalgam with new restoration",
+"n": "Sturdevant 7e p. 116 (with p. 102): marginal ditching deeper than 0.5 mm that predisposes to caries is an indication to replace the amalgam."
+},
+"R19-Resto-14": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 116"
+},
+"SAL-465": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 12",
+"ans": "4",
+"n": "⚠ Corrected per Sturdevant 7e p. 12: four embrasures radiate from each contact — facial, lingual, occlusal/incisal and gingival."
+},
+"SAUD-946": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 1 (Clinical Significance of Dental Anatomy, Histology, Physiology, and Occlusion), p. 12",
+"ans": "4",
+"n": "⚠ Corrected per Sturdevant 7e p. 12: four embrasures — facial, lingual, occlusal/incisal and gingival."
+},
+"SAUD-1394": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 75",
+"ans": "open contact",
+"n": "⚠ Corrected per Sturdevant 7e pp. 73–75: restorations with open contacts, open margins or overhangs are listed caries risk factors (and open contacts cause food impaction/perio problems)."
+},
+"SAUD-314": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 75"
+},
+"SAL-012": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 75"
+},
+"SEP-Muath-28": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 2 (Dental Caries: Etiology, Clinical Characteristics, Risk Assessment, and Management), p. 75"
+},
+"SAUD-450": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 325",
+"ans": "connect the cavities",
+"n": "Sturdevant 7e p. 325: at least ~1.6 mm (premolars) or ~2 mm (molars) of tooth structure should remain between the margin and the proximal surface; with only 1.5 mm left the lesions are joined into one preparation."
+},
+"S02-Q75": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. e28 (online chapter)"
+},
+"SAUD-608": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 15 (Preliminary Considerations for Operative Dentistry), p. e41 (online chapter)"
+},
+"SAL-079": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"S02-Q133": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"R19-Resto-40": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"SAUD-2359": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 393"
+},
+"OCT14-84": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 479"
+},
+"SAUD-653": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 319"
+},
+"SAUD-624": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 13 (Dental Biomaterials), p. 483",
+"n": "⚠ Sturdevant 7e p. 483: under composite, a thin RMGI liner is placed in the deepest part of deeper preparations; calcium hydroxide is only for preparations very close to the pulp (RDT < 0.5 mm, p. 315)."
+},
+"SAUD-2488": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 4 (Fundamentals of Tooth Preparation), p. 130",
+"n": "⚠ Sturdevant 7e p. 130: calcium hydroxide stimulates reparative (tertiary) dentin, not secondary dentin."
+},
+"SAUD-1920": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 315"
+},
+"SAUD-1102": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 10 (Clinical Technique for Amalgam Restorations), p. 360"
+},
+"SAL-234": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106",
+"n": "⚠ Sturdevant 7e p. 106: a rounded notch on facial cervical surfaces from brushing = abrasion; a wedge-shaped cervical defect from flexure = abfraction. The stem alone doesn't decide it."
+},
+"S02-Q62": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 3 (Patient Assessment, Examination, Diagnosis, and Treatment Planning), p. 106"
+},
+"SEP-Rakan-32": {
+"ref": "Sturdevant's Art and Science of Operative Dentistry, 7th ed., ch. 18 (Class II Cast-Metal Restorations), p. e110 (online chapter)"
+},
+"R19-Resto-46": {
+"n": "⚠ Recalls disagree (amalgam expansion vs undetected pulp exposure); Sturdevant 7e doesn't address this scenario directly. Deep undercuts in dentinal line angles near the pulp point most to a mechanical pulp exposure."
+},
+"SAUD-2507": {
+"n": "⚠ Recalls disagree (amalgam expansion vs undetected pulp exposure); Sturdevant 7e doesn't address this scenario directly. Deep undercuts in dentinal line angles near the pulp point most to a mechanical pulp exposure."
+},
+"SAUD-2063": {
+"n": "⚠ Recalls disagree (amalgam expansion vs undetected pulp exposure); Sturdevant 7e doesn't address this scenario directly. Deep undercuts in dentinal line angles near the pulp point most to a mechanical pulp exposure."
+}
+}
