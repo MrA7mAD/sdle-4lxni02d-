@@ -55,15 +55,15 @@ async function run(){
   try{
     const id=await findOrCreate();const gist=await api("/gists/"+id);const files={};let curChanged=false;
     for(const bid in BANKS){const key=BANKS[bid].ls,fname="sdle-"+bid+".json";
-      const locRaw=g(key);let loc=null;try{loc=locRaw?JSON.parse(locRaw):null}catch(e){}
+      const locRaw=localStorage.getItem(key);let loc=null;if(locRaw){try{loc=JSON.parse(locRaw)}catch(e){throw new Error("Saved progress for "+bid+" could not be read; sync paused to protect it.")}}
       let rem=null;try{const t=await fileText(gist.files&&gist.files[fname]);rem=t?JSON.parse(t):null}catch(e){}
       if(!loc&&!rem)continue;
       const m=merge(loc,rem);
-      if(!loc||sig(m)!==sig(loc)){st(key,JSON.stringify(m));if(typeof B!=="undefined"&&B&&B.ls===key)curChanged=true}
+      if(!loc||sig(m)!==sig(loc)){if(loc&&Object.keys(m.ans).length<Object.keys(nrm(clone(loc)).ans).length)st("sdle-backup-"+bid,locRaw);st(key,JSON.stringify(m));if(typeof B!=="undefined"&&B&&B.ls===key)curChanged=true}
       if(!rem||sig(m)!==sig(rem))files[fname]={content:JSON.stringify(m)}}
     let curS=false;
     for(const bid in BANKS){const sk=BANKS[bid].lss,tk="sdle-sync-st-"+bid,fname="sdle-"+bid+"-session.json";
-      const locS=g(sk),lt=+g(tk)||0;let rem=null;try{const t=await fileText(gist.files&&gist.files[fname]);rem=t?JSON.parse(t):null}catch(e){}
+      const locS=localStorage.getItem(sk),lt=+localStorage.getItem(tk)||0;let rem=null;try{const t=await fileText(gist.files&&gist.files[fname]);rem=t?JSON.parse(t):null}catch(e){}
       if(!locS&&!rem)continue;
       if(rem&&rem.t>lt){
         const isCur=typeof B!=="undefined"&&B&&B.id===bid;
