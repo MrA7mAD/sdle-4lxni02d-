@@ -1005,7 +1005,7 @@ function used(){let n=0,big=[];try{for(let i=0;i<localStorage.length;i++){const 
 function kb(c){return c<1024?c+" characters":(c/1024).toFixed(c<10240?1:0)+" K characters"}
 function testWrite(){try{const v="x".repeat(2000)+Date.now();localStorage.setItem("sdle-write-test",v);const ok=localStorage.getItem("sdle-write-test")===v;localStorage.removeItem("sdle-write-test");return ok?"":"read-back mismatch"}catch(e){return e.name||e.message||"error"}}
 window.storeRow=function(){const u=used(),t=testWrite();
-  let cnt="";try{if(typeof B!=="undefined"&&B){const p=JSON.parse(localStorage.getItem(B.ls)||"{}");cnt=" "+B.name+": "+Object.keys(p.ans||{}).length+" answers saved here."}}catch(e){}
+  let cnt="";try{if(typeof B!=="undefined"&&B){const p=JSON.parse(localStorage.getItem(B.ls)||"{}");cnt=" "+B.name+": "+Object.keys(p.ans||{}).length+" answers saved here."+(p.rz?" Last reset: "+new Date(p.rz).toLocaleString()+".":" Never reset.")}}catch(e){}
   const bad=t||fails;
   const msg=bad?'<span style="color:var(--bad)">Saving is failing on this device'+(t?" ("+esc(t)+")":"")+(fails?" — "+fails+" save"+(fails>1?"s":"")+" failed this session":"")+'. Don\'t start long sessions here; use another browser or device until this is fixed.</span> ':'<span style="color:var(--ok,#3fb37f)">Saving works.</span> ';
   return '<div class="set-row" id="storerow"><div><b>Storage on this device</b><p>'+msg+'The app uses about '+kb(u.n)+' (browsers allow roughly 2,500–5,000 K).'+cnt+'</p></div><button class="btn" data-store>Check again</button></div>'};
