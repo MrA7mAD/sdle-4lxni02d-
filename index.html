@@ -300,6 +300,9 @@ html.qz.qzr{font-size:var(--qf)}
 #game .ghint{margin-top:auto;padding-top:24px;text-align:center;color:#8596aa;font-size:14px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
 #game .b{display:inline-flex;align-items:center;justify-content:center;width:1.7em;height:1.7em;border-radius:50%;font-weight:800;color:#0a1220;font-size:.92em;flex:none}
 #game .bA{background:#86e0b0}#game .bB{background:#f5a3b3}#game .bX{background:#8fc2f5}#game .bY{background:#f3d77e}
+#game .bN{background:rgba(255,255,255,.12);color:#e7eef6}
+#game .gop.sel .bN{background:#9ad4ec;color:#0a1220}
+#game .gop.ok .bN{background:#86e0b0;color:#0a1220}#game .gop.bad .bN{background:#f5a3b3;color:#0a1220}
 #game .bD{background:#c9d6e6;border-radius:8px;width:auto;padding:0 .45em}
 #game .ghud{display:flex;align-items:center;gap:14px;font-weight:700;font-size:clamp(15px,1.7vw,19px);color:#d5e0ec}
 #game .ghud .sp{flex:1}
@@ -1228,11 +1231,11 @@ function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.ans==null&&!r.perm){
   const bar='<div class="gbar"><i style="width:'+(tot?Math.round(100*(r.idx+(r.ans!=null?1:0))/tot):Math.min(100,r.n*5))+'%"></i></div>';
   const done=r.ans!=null;
   const ops=r.perm.map((oi,k)=>{let c="gop";if(done){if(q.a.includes(oi))c+=" ok";else if(oi===r.ans)c+=" bad";else c+=" dim"}else if(k===G.sel)c+=" sel";
-    return '<div class="'+c+'" data-i="'+k+'">'+HB(BTN[k])+'<span>'+esc(q.o[oi])+'</span></div>'}).join("");
+    return '<div class="'+c+'" data-i="'+k+'"><span class="b bN">'+"ABCD"[k]+'</span><span>'+esc(q.o[oi])+'</span></div>'}).join("");
   let fb="";if(done){const ok=q.a.includes(r.ans);fb='<div class="gfb"><b class="t" style="color:'+(ok?'#86e0b0':'#f5a3b3')+'">'+(ok?'Correct!':'Not quite — answer: '+esc(q.o[q.a[0]]))+'</b>'+(q.e?'<div style="margin-top:6px">'+esc(q.e)+'</div>':'')+'</div>'}
   const fr=!!r.fresh;r.fresh=false;root().innerHTML='<div class="gw'+(fr?' fresh':'')+'">'+hud+bar+'<div class="gmeta">'+esc(q.i)+' · '+esc(SECS[q.s]?SECS[q.s][0]:"")+(q.by?' · '+esc(q.by):'')+'</div>'+
    '<div class="gimg">'+imgs(q.pi)+'</div><div class="gqt">'+esc(q.q)+'</div><div class="gopts">'+ops+'</div>'+fb+
-   hint(done?'<span>'+HB("A")+' next</span><span>'+HB("Y")+' '+(P.bm[q.i]?'bookmarked ✓':'bookmark')+'</span><span>'+HD("☰")+' pause</span>':'<span>'+HB("A")+HB("B")+HB("X")+HB("Y")+' answer</span><span>'+HD("✚")+' + '+HB("A")+' also works</span><span>'+HD("☰")+' pause</span>')+'</div>';
+   hint(done?'<span>'+HB("A")+' next</span><span>'+HB("Y")+' '+(P.bm[q.i]?'bookmarked ✓':'bookmark')+'</span><span>'+HD("☰")+' pause</span>':'<span>'+HD("✚")+' choose</span><span>'+HB("A")+' answer</span><span>'+HD("☰")+' pause</span>')+'</div>';
   if(done){const f=root().querySelector(".gfb");f&&f.scrollIntoView({block:"nearest",behavior:"smooth"})}else root().scrollTop=0}
 function answer(k){const r=G.run;if(r.ans!=null||k>=r.perm.length)return;const qi=r.ids[r.idx],q=Q[qi],oi=r.perm[k],ok=q.a.includes(oi);
   r.ans=oi;r.n++;record(qi,oi);const h=P.hist.find(x=>x.id===r.hid);if(h){h.r[q.i]=ok?1:0;h.t1=Date.now()}save();
@@ -1264,7 +1267,7 @@ function act(b){if(!G.on)return;
     if(b==="start"){G.scr="pause";G.sel=0;return draw()}
     if(r.ans==null){const k=BTN.indexOf(b);
       if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+r.perm.length)%r.perm.length;sfx.move();root().querySelectorAll(".gop").forEach((o,k)=>o.classList.toggle("sel",k===G.sel));return}
-      if(k>=0)return answer(b==="A"&&G.selMoved?G.sel:k);return}
+      if(b==="A")return answer(G.sel);if(b==="B"){G.scr="pause";G.sel=0;return draw()}return}
     if(b==="A")return next();
     if(b==="Y"){toggleBm(r.ids[r.idx]);return drawQ()}
     if(b==="B"){G.scr="pause";G.sel=0;return draw()}
