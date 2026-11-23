@@ -41,6 +41,7 @@ subprocess.run(['python3','/home/claude/tools/size_extras.py',repo+'/index.html'
 subprocess.run(['python3','/home/claude/tools/sync_extras.py',repo+'/index.html'],check=True)
 subprocess.run(['python3',repo+'/extras/save_extras.py',repo+'/index.html'],check=True)
 subprocess.run(['python3',repo+'/extras/game_extras.py',repo+'/index.html'],check=True)
+subprocess.run(['python3',repo+'/extras/arcade_extras.py',repo+'/index.html'],check=True)
 # Textbook checks (references, corrections) — run last
 import glob
 books=sorted(glob.glob(repo+'/extras/book_*.json'))
