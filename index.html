@@ -1441,7 +1441,7 @@ async function run(){
       if(!locS&&!rem)continue;
       if(rem&&rem.t>lt){
         const isCur=typeof B!=="undefined"&&B&&B.id===bid;
-        if(isCur&&typeof V!=="undefined"&&V&&V.name==="quiz")continue;
+        if(isCur&&((typeof V!=="undefined"&&V&&V.name==="quiz")||(document.getElementById("game")||{classList:{contains:()=>0}}).classList.contains("on")))continue;
         let qn=-1;try{qn=loadBank(bid).q.length}catch(e){}
         if(rem.qn!==qn)continue;
         st(sk,rem.s);st(tk,String(rem.t));if(isCur){try{S=JSON.parse(rem.s)}catch(e){}curS=true}}
