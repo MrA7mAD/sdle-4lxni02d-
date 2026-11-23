@@ -50,11 +50,13 @@ css = r"""
 #game .gbar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#7cc6e4,#b9a0ff);box-shadow:0 0 14px rgba(124,198,228,.55);transition:width .6s ease}
 #game .combo{padding:5px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(243,215,126,.25),rgba(245,163,179,.25));border:1px solid rgba(243,215,126,.45);color:#f6e2a6;font-size:.85em}
 #game .gmeta{color:#8ea2b8;font-size:13px;margin-bottom:10px;font-weight:500}
-#game .gqt{font-size:clamp(20px,2.3vw,27px);line-height:1.5;font-weight:500;margin:0 0 20px;animation:gin .45s ease}
+#game .gqt{font-size:clamp(20px,2.3vw,27px);line-height:1.5;font-weight:500;margin:0 0 20px}
+#game .fresh .gqt{animation:gin .45s ease}
 #game .gimg img{max-width:100%;max-height:34vh;border-radius:16px;display:block;margin:0 auto 18px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 #game .gopts{display:grid;gap:12px}
-#game .gop{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:clamp(17px,1.95vw,22px);line-height:1.4;cursor:pointer;transition:transform .22s ease,background .22s,border-color .22s,box-shadow .22s,opacity .3s;animation:gin .4s ease backwards}
-#game .gop:nth-child(2){animation-delay:.05s}#game .gop:nth-child(3){animation-delay:.1s}#game .gop:nth-child(4){animation-delay:.15s}
+#game .gop{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:clamp(17px,1.95vw,22px);line-height:1.4;cursor:pointer;transition:transform .22s ease,background .22s,border-color .22s,box-shadow .22s,opacity .3s}
+#game .fresh .gop{animation:gin .4s ease backwards}
+#game .fresh .gop:nth-child(2){animation-delay:.05s}#game .fresh .gop:nth-child(3){animation-delay:.1s}#game .fresh .gop:nth-child(4){animation-delay:.15s}
 #game .gop .b{width:2em;height:2em;font-size:.88em}
 #game .gop.sel{border-color:rgba(154,212,236,.75);background:rgba(124,198,228,.10);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
 #game .gop.ok{background:rgba(111,220,166,.12);border-color:rgba(111,220,166,.75);box-shadow:0 0 0 3px rgba(111,220,166,.12),0 0 28px rgba(111,220,166,.22)}
@@ -120,7 +122,7 @@ function startRun(mode){const ids=pool();if(!ids.length){toastG(mode==="fix"?"No
   G.mode=mode;G.run={mode,ids:mode==="quick"?ids.slice(0,10):ids,idx:0,score:0,streak:0,best:0,ok:0,n:0,hearts:3,ans:null,perm:null,t0:0,hid:Date.now(),xp:0};
   P.hist.push({id:G.run.hid,ti:"🎮 Game · "+(mode==="quick"?"Quick run":mode==="surv"?"Survival":"Fix mistakes"),m:"p",t1:Date.now(),r:{}});if(P.hist.length>300)P.hist.shift();
   G.scr="q";drawQ()}
-function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.ans==null&&!r.perm){r.perm=shuffle(q.o.map((_,k)=>k));r.t0=Date.now();G.sel=0}
+function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.ans==null&&!r.perm){r.perm=shuffle(q.o.map((_,k)=>k));r.t0=Date.now();G.sel=0;r.fresh=true}
   const tot=r.mode==="quick"?r.ids.length:null,mult=Math.min(4,1+Math.floor(r.streak/3));
   const hud='<div class="ghud"><span>'+(r.mode==="surv"?"❤️".repeat(r.hearts)+"🖤".repeat(3-r.hearts):"Q "+(r.idx+1)+(tot?" / "+tot:""))+'</span><span class="sp"></span>'+(r.streak>=3?'<span class="combo">x'+mult+' COMBO</span>':'')+'<span>🔥 '+r.streak+'</span><span>⭐ '+r.score.toLocaleString()+'</span></div>';
   const bar='<div class="gbar"><i style="width:'+(tot?Math.round(100*(r.idx+(r.ans!=null?1:0))/tot):Math.min(100,r.n*5))+'%"></i></div>';
@@ -128,7 +130,7 @@ function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.ans==null&&!r.perm){
   const ops=r.perm.map((oi,k)=>{let c="gop";if(done){if(q.a.includes(oi))c+=" ok";else if(oi===r.ans)c+=" bad";else c+=" dim"}else if(k===G.sel)c+=" sel";
     return '<div class="'+c+'" data-i="'+k+'">'+HB(BTN[k])+'<span>'+esc(q.o[oi])+'</span></div>'}).join("");
   let fb="";if(done){const ok=q.a.includes(r.ans);fb='<div class="gfb"><b class="t" style="color:'+(ok?'#86e0b0':'#f5a3b3')+'">'+(ok?'Correct!':'Not quite — answer: '+esc(q.o[q.a[0]]))+'</b>'+(q.e?'<div style="margin-top:6px">'+esc(q.e)+'</div>':'')+'</div>'}
-  root().innerHTML='<div class="gw">'+hud+bar+'<div class="gmeta">'+esc(q.i)+' · '+esc(SECS[q.s]?SECS[q.s][0]:"")+(q.by?' · '+esc(q.by):'')+'</div>'+
+  const fr=!!r.fresh;r.fresh=false;root().innerHTML='<div class="gw'+(fr?' fresh':'')+'">'+hud+bar+'<div class="gmeta">'+esc(q.i)+' · '+esc(SECS[q.s]?SECS[q.s][0]:"")+(q.by?' · '+esc(q.by):'')+'</div>'+
    '<div class="gimg">'+imgs(q.pi)+'</div><div class="gqt">'+esc(q.q)+'</div><div class="gopts">'+ops+'</div>'+fb+
    hint(done?'<span>'+HB("A")+' next</span><span>'+HB("Y")+' '+(P.bm[q.i]?'bookmarked ✓':'bookmark')+'</span><span>'+HD("☰")+' pause</span>':'<span>'+HB("A")+HB("B")+HB("X")+HB("Y")+' answer</span><span>'+HD("✚")+' + '+HB("A")+' also works</span><span>'+HD("☰")+' pause</span>')+'</div>';
   if(done){const f=root().querySelector(".gfb");f&&f.scrollIntoView({block:"nearest",behavior:"smooth"})}else root().scrollTop=0}
@@ -151,7 +153,7 @@ function draw(){if(G.scr==="menu")drawMenu();else if(G.scr==="q")drawQ();else if
 // ---- input ----
 function act(b){if(!G.on)return;
   if(G.scr==="menu"){const it=menuItems(),m=it[G.sel];
-    if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+it.length)%it.length;sfx.move();return drawMenu()}
+    if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+it.length)%it.length;sfx.move();root().querySelectorAll(".gmenu .mi").forEach((o,k)=>o.classList.toggle("sel",k===G.sel));return}
     if((b==="left"||b==="right")&&m.lr){const d=b==="left"?-1:1;
       if(m.k==="topic"){G.topic=G.topic+d;if(G.topic<-1)G.topic=SECS.length-1;if(G.topic>=SECS.length)G.topic=-1}
       if(m.k==="bank"){const i=(ORDER.indexOf(B.id)+d+ORDER.length)%ORDER.length;useBank(ORDER[i]);G.topic=-1}
@@ -161,7 +163,7 @@ function act(b){if(!G.on)return;
   if(G.scr==="q"){const r=G.run;
     if(b==="start"){G.scr="pause";G.sel=0;return draw()}
     if(r.ans==null){const k=BTN.indexOf(b);
-      if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+r.perm.length)%r.perm.length;sfx.move();return drawQ()}
+      if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+r.perm.length)%r.perm.length;sfx.move();root().querySelectorAll(".gop").forEach((o,k)=>o.classList.toggle("sel",k===G.sel));return}
       if(k>=0)return answer(b==="A"&&G.selMoved?G.sel:k);return}
     if(b==="A")return next();
     if(b==="Y"){toggleBm(r.ids[r.idx]);return drawQ()}
