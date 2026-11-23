@@ -65,8 +65,7 @@ function schedule(){const tot=BARS*8*2;while(nextT<AC.currentTime+.2){const bs=s
     nextT+=E8;step=(step+1)%tot}}
 function musicOn(){ac();if(seq)return;nextT=AC.currentTime+.05;seq=setInterval(schedule,25)}
 function musicOff(){if(seq){clearInterval(seq);seq=null}}
-function wantMusic(){if(!A.music||document.visibilityState!=="visible")return false;const g=document.getElementById("game");if(g&&g.classList.contains("on"))return true;
-  return typeof V!=="undefined"&&V.name==="quiz"&&!$("#app").hidden}
+function wantMusic(){if(!A.music||document.visibilityState!=="visible")return false;const g=document.getElementById("game");return !!(g&&g.classList.contains("on"))}
 setInterval(()=>{if(wantMusic()){if(AC&&AC.state==="running")musicOn()}else musicOff()},400);
 const fx={ok:()=>{note(SG,660,AC.currentTime,.1,"square",.5);note(SG,990,AC.currentTime+.08,.18,"square",.5)},
   bad:()=>{note(SG,180,AC.currentTime,.12,"sawtooth",.45);note(SG,120,AC.currentTime+.1,.25,"sawtooth",.45)},
@@ -141,7 +140,7 @@ setInterval(()=>{try{if(!raf&&pads().length){poll();const r=document.getElementB
 document.addEventListener("pointerdown",()=>document.documentElement.classList.remove("pad"),true);
 // ---------- settings row ----------
 window.arcRow=function(){const p=pads(),seg=(k,on)=>'<span class="seg" style="display:inline-flex;gap:0"><button class="btn sm'+(on?' pri':'')+'" data-arc="'+k+'1">On</button><button class="btn sm'+(!on?' pri':'')+'" data-arc="'+k+'0">Off</button></span>';
-  return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>Calm background music while you answer questions, sound effects, streaks and XP. Controller: '+
+  return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>Calm background music in Game mode, sound effects, streaks and XP. Controller: '+
   (p.length?'<span style="color:var(--ok,#3fb37f)">'+esc(p[0].id)+' detected</span> ('+(p[0].mapping==="standard"?"standard layout":"non-standard layout")+') · <b id="arctest">press a button to test</b> — A/B/X/Y answer, D-pad ◀ ▶ previous/next, A next after answering, Y bookmark, ☰ Game mode. Outside questions the D-pad moves and A selects.':'<span style="color:var(--bad)">not detected.</span> <i>('+(navigator.getGamepads?"browser controller support on":"this browser has controller support turned off")+')</i> Turn it on in Xbox (or iOS) mode and pair it with this device (Bluetooth, USB cable or its dongle), click once on this page, then press any button on the controller.')+
   '</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span>Music '+seg("m",A.music)+'</span><span>Effects '+seg("s",A.sfx)+'</span></div></div>'};
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-arc]");if(!b)return;const k=b.dataset.arc;
