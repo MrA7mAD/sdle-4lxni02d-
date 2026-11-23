@@ -333,6 +333,44 @@ html.pad :focus{outline:3px solid #38bdf8!important;outline-offset:3px;border-ra
 @keyframes arcok{0%{box-shadow:inset 0 0 0 0 rgba(74,222,128,0)}40%{box-shadow:inset 0 0 0 9999px rgba(74,222,128,.10)}100%{box-shadow:inset 0 0 0 0 rgba(74,222,128,0)}}
 @keyframes arcbad{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 </style>
+
+<style>/*CALM-THEME*/
+html.calm{--r:16px}
+html.calm:not([data-theme="light"]){--bg:#0b1320;--surface:rgba(255,255,255,.055);--surface2:rgba(255,255,255,.09);--ink:#e6eef6;--muted:#9fb0c3;--line:rgba(255,255,255,.10);--brand:#7cc6e4;--brand-ink:#0b1320;--brand-soft:rgba(124,198,228,.16);--ok:#6fdca6;--ok-soft:rgba(111,220,166,.14);--bad:#f39aac;--bad-soft:rgba(243,154,172,.14)}
+@media (prefers-color-scheme:light){html.calm:not([data-theme="dark"]){--bg:#eef3f6;--surface:rgba(255,255,255,.78);--surface2:#e3ecf1;--ink:#1d2b36;--muted:#5d7080;--line:rgba(29,43,54,.10);--brand:#3b8fb0;--brand-ink:#fff;--brand-soft:#dcecf4;--ok:#2f9a66;--ok-soft:#dff3e8;--bad:#c4566f;--bad-soft:#f8e3e8}}
+html.calm[data-theme="light"]{--bg:#eef3f6;--surface:rgba(255,255,255,.78);--surface2:#e3ecf1;--ink:#1d2b36;--muted:#5d7080;--line:rgba(29,43,54,.10);--brand:#3b8fb0;--brand-ink:#fff;--brand-soft:#dcecf4;--ok:#2f9a66;--ok-soft:#dff3e8;--bad:#c4566f;--bad-soft:#f8e3e8}
+html.calm body{background:var(--bg)}
+html.calm body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 35% at 20% 15%,rgba(124,198,228,.22),transparent 70%),radial-gradient(35% 30% at 85% 25%,rgba(186,160,255,.18),transparent 70%),radial-gradient(45% 40% at 60% 95%,rgba(111,220,166,.14),transparent 70%);
+  animation:calmdrift 40s ease-in-out infinite alternate}
+@keyframes calmdrift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-3%,2%) scale(1.05)}100%{transform:translate(3%,-2%) scale(1.02)}}
+@media (prefers-reduced-motion:reduce){html.calm body::before{animation:none}}
+html.calm .qbar{background:transparent;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:transparent}
+html.calm .prog{height:6px;border-radius:6px;background:var(--line)}
+html.calm .prog i{background:linear-gradient(90deg,#7cc6e4,#b9a0ff);box-shadow:0 0 12px rgba(124,198,228,.6);border-radius:6px;transition:width .5s ease}
+html.calm .stem{font-family:var(--sans);font-weight:500;letter-spacing:-.005em;line-height:1.65}
+html.calm .opt{border-width:1.5px;border-radius:16px;padding:15px 16px;background:var(--surface);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .18s ease,border-color .18s,background .18s,box-shadow .18s}
+html.calm .opt:hover:not(:disabled),html.calm .opt:focus-visible{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+html.calm .opt .L{width:30px;height:30px;color:#0b1320;font-weight:800}
+html.calm .opt:nth-child(1) .L{background:#86e0b0}html.calm .opt:nth-child(2) .L{background:#f5a3b3}html.calm .opt:nth-child(3) .L{background:#8fc2f5}html.calm .opt:nth-child(4) .L{background:#f3d77e}
+html.calm .opt.ok{box-shadow:0 0 0 3px rgba(111,220,166,.18),0 0 26px rgba(111,220,166,.25);animation:calmglow 1.2s ease}
+html.calm .opt.ok .L{background:var(--ok)!important;color:#0b1320}
+html.calm .opt.bad .L{background:var(--bad)!important;color:#0b1320}
+html.calm .opt.dim{opacity:.45}
+@keyframes calmglow{0%{box-shadow:0 0 0 0 rgba(111,220,166,.5)}100%{box-shadow:0 0 0 3px rgba(111,220,166,.18),0 0 26px rgba(111,220,166,.25)}}
+html.calm .expl{border-radius:16px;border-left-width:4px;background:var(--surface);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+html.calm .expl,html.calm .expl p{font-family:var(--sans);line-height:1.65}
+html.calm .btn{border-radius:12px;transition:transform .15s,box-shadow .15s}
+html.calm .btn:hover{transform:translateY(-1px)}
+html.calm .btn.pri{background:linear-gradient(135deg,#6fb8d8,#9b8cf0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(124,140,240,.3)}
+html.calm .strip,html.calm .card,html.calm .set-row{border-radius:16px}
+html.calm .strip{background:var(--surface);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+html.calm .side{background:rgba(10,18,30,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+@media (prefers-color-scheme:light){html.calm:not([data-theme="dark"]) .side{background:rgba(255,255,255,.6)}}
+html.calm[data-theme="light"] .side{background:rgba(255,255,255,.6)}
+html.calm .qimg{border-radius:16px;background:transparent}
+html.calm #archud{background:rgba(15,25,40,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1)}
+</style>
 </head>
 <body>
 <div class="app" id="app">
@@ -1053,7 +1091,7 @@ dbHandles();
 /*ARCADE-JS*/
 {
 const KS="sdle-arcade-v1";let A;try{A=JSON.parse(localStorage.getItem(KS)||"{}")}catch(e){A={}}
-if(A.music===undefined)A.music=true;if(A.sfx===undefined)A.sfx=true;
+if(A.music===undefined)A.music=true;if(A.look===undefined)A.look="calm";document.documentElement.classList.toggle("calm",A.look==="calm");if(A.sfx===undefined)A.sfx=true;
 const asave=()=>{try{localStorage.setItem(KS,JSON.stringify(A))}catch(e){}};
 // ---------- audio ----------
 let AC=null,MG=null,SG=null;
@@ -1160,9 +1198,9 @@ document.addEventListener("pointerdown",()=>document.documentElement.classList.r
 window.arcRow=function(){const p=pads(),seg=(k,on)=>'<span class="seg" style="display:inline-flex;gap:0"><button class="btn sm'+(on?' pri':'')+'" data-arc="'+k+'1">On</button><button class="btn sm'+(!on?' pri':'')+'" data-arc="'+k+'0">Off</button></span>';
   return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>Calm background music while you answer questions, sound effects, streaks and XP. Controller: '+
   (p.length?'<span style="color:var(--ok,#3fb37f)">'+esc(p[0].id)+' detected</span> ('+(p[0].mapping==="standard"?"standard layout":"non-standard layout")+') · <b id="arctest">press a button to test</b> — A/B/X/Y answer, D-pad ◀ ▶ previous/next, A next after answering, Y bookmark, ☰ Game mode. Outside questions the D-pad moves and A selects.':'<span style="color:var(--bad)">not detected.</span> <i>('+(navigator.getGamepads?"browser controller support on":"this browser has controller support turned off")+')</i> Turn it on in Xbox (or iOS) mode and pair it with this device (Bluetooth, USB cable or its dongle), click once on this page, then press any button on the controller.')+
-  '</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span>Music '+seg("m",A.music)+'</span><span>Effects '+seg("s",A.sfx)+'</span></div></div>'};
+  '</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span>Music '+seg("m",A.music)+'</span><span>Look <span class="seg" style="display:inline-flex"><button class="btn sm'+(A.look==="calm"?' pri':'')+'" data-arc="lc">Calm</button><button class="btn sm'+(A.look!=="calm"?' pri':'')+'" data-arc="lx">Classic</button></span></span><span>Effects '+seg("s",A.sfx)+'</span></div></div>'};
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-arc]");if(!b)return;const k=b.dataset.arc;
-  if(k[0]==="m")A.music=k[1]==="1";else A.sfx=k[1]==="1";asave();if(A.music||A.sfx){ac();if(k==="s1")sfx("ok")}
+  if(k[0]==="l"){A.look=k==="lc"?"calm":"classic";document.documentElement.classList.toggle("calm",A.look==="calm")}else if(k[0]==="m")A.music=k[1]==="1";else A.sfx=k[1]==="1";asave();if(A.music||A.sfx){ac();if(k==="s1")sfx("ok")}
   const r=document.getElementById("arcrow");if(r)r.outerHTML=arcRow();hud()});
 }
 
