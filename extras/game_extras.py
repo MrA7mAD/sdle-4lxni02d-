@@ -174,6 +174,7 @@ function poll(){G.raf=requestAnimationFrame(poll);const pads=navigator.getGamepa
     else if(["up","down","left","right"].includes(k)&&now>G.rep[k]&&G.on){G.rep[k]=now+130;act(k)}}
   for(const k in G.held)if(!down[k])delete G.held[k]}
 function ensurePoll(){if(!G.raf&&navigator.getGamepads)poll()}
+setInterval(()=>{try{if(!G.raf&&[...navigator.getGamepads()].some(Boolean))poll()}catch(e){}},700);
 window.addEventListener("gamepadconnected",e=>{ensurePoll();if(!G.on)toastG("🎮 Controller connected — press ☰ (Menu/Start) to open Game mode")});
 document.addEventListener("keydown",e=>{if(!G.on)return;const k=e.key,m={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right",Enter:"A",Escape:"B",Backspace:"B"," ":"A",p:"start",P:"start"};
   let b=m[k];if(!b&&G.scr==="q"&&G.run&&G.run.ans==null){const n="1234".indexOf(k);if(n>=0)b=BTN[n]}
