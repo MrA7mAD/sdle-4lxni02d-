@@ -131,7 +131,10 @@ function act(b){document.documentElement.classList.add("pad");
 function poll(){raf=requestAnimationFrame(poll);const g=document.getElementById("game");const gameOn=g&&g.classList.contains("on");
   const pads=navigator.getGamepads?navigator.getGamepads():[];const now=performance.now(),down={};
   for(const gp of pads){if(!gp)continue;gp.buttons.forEach((bt,i)=>{if(MAP[i]&&(bt.pressed||bt.value>.6))down[MAP[i]]=1});const ax=gp.axes||[];
-    if(ax[1]<-.6)down.up=1;if(ax[1]>.6)down.down=1;if(ax[0]<-.6)down.left=1;if(ax[0]>.6)down.right=1}
+    if(ax[1]<-.6)down.up=1;if(ax[1]>.6)down.down=1;if(ax[0]<-.6)down.left=1;if(ax[0]>.6)down.right=1;
+    if(gp.mapping!=="standard"&&ax.length>9){const h=ax[9];if(h>-1.1&&h<1.1){if(h<-.8||h>.9)down.up=1;if(h>-.75&&h<-.1)down.right=1;if(h>-.2&&h<.45)down.down=1;if(h>.4&&h<1.05)down.left=1}}
+    gp.buttons.forEach((bt,i)=>{if(bt.pressed&&!window.__arcLast)window.__arcLast={i,t:now}})}
+  if(window.__arcLast){const L=window.__arcLast;window.__arcLast=null;const t=document.getElementById("arctest");if(t)t.textContent="Last button: #"+L.i+(MAP[L.i]?" ("+MAP[L.i]+")":" (not mapped)")}
   for(const k in down){if(!held[k]){held[k]=now;rep[k]=now+380;if(!gameOn)act(k)}else if(["up","down","left","right"].includes(k)&&now>rep[k]){rep[k]=now+150;if(!gameOn)act(k)}}
   for(const k in held)if(!down[k])delete held[k]}
 function pads(){return [...(navigator.getGamepads?navigator.getGamepads():[])].filter(Boolean)}
@@ -142,7 +145,7 @@ document.addEventListener("pointerdown",()=>document.documentElement.classList.r
 // ---------- settings row ----------
 window.arcRow=function(){const p=pads(),seg=(k,on)=>'<span class="seg" style="display:inline-flex;gap:0"><button class="btn sm'+(on?' pri':'')+'" data-arc="'+k+'1">On</button><button class="btn sm'+(!on?' pri':'')+'" data-arc="'+k+'0">Off</button></span>';
   return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>8-bit music while you answer questions, sound effects, streaks and XP. Controller: '+
-  (p.length?'<span style="color:var(--ok,#3fb37f)">'+esc(p[0].id)+' detected</span> — A/B/X/Y answer, D-pad ◀ ▶ previous/next, A next after answering, Y bookmark, ☰ Game mode. Outside questions the D-pad moves and A selects.':'<span style="color:var(--bad)">not detected.</span> Connect it in iPad Settings › Bluetooth (in its iOS/Xbox mode), open this page, then press any button on it.')+
+  (p.length?'<span style="color:var(--ok,#3fb37f)">'+esc(p[0].id)+' detected</span> ('+(p[0].mapping==="standard"?"standard layout":"non-standard layout")+') · <b id="arctest">press a button to test</b> — A/B/X/Y answer, D-pad ◀ ▶ previous/next, A next after answering, Y bookmark, ☰ Game mode. Outside questions the D-pad moves and A selects.':'<span style="color:var(--bad)">not detected.</span> Turn it on in Xbox (or iOS) mode and pair it with this device (Bluetooth, USB cable or its dongle), click once on this page, then press any button on the controller.')+
   '</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span>Music '+seg("m",A.music)+'</span><span>Effects '+seg("s",A.sfx)+'</span></div></div>'};
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-arc]");if(!b)return;const k=b.dataset.arc;
   if(k[0]==="m")A.music=k[1]==="1";else A.sfx=k[1]==="1";asave();if(A.music||A.sfx){ac();if(k==="s1")sfx("ok")}
