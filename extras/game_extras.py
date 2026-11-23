@@ -108,7 +108,8 @@ function pool(){let ids=[];for(let i=0;i<Q.length;i++)if(playable(i)&&(G.topic<0
 // ---- screens ----
 function menuItems(){const nb=ORDER.length,nt=SECS.length;
   return [
-   {k:"study",t:"📚 Study the bank",s:studyLabel()},
+   {k:"study",t:sess()?"📚 Continue study session":"📚 Study the bank",s:studyLabel()},
+   ...(sess()&&sess().mode!=="exam"?[{k:"studynew",t:"📚 New study session",s:"Start "+topicName()+" from question 1 (replaces the current session)"}]:[]),
    {k:"quick",t:"▶ Quick run",s:"10 questions — new and missed ones first"},
    {k:"surv",t:"♥ Survival",s:"Keep going until you lose 3 hearts"},
    {k:"fix",t:"✖ Fix my mistakes",s:"Only questions you got wrong ("+mistakes().filter(playable).length+")"},
@@ -122,34 +123,45 @@ function drawMenu(){const it=menuItems();G.sel=Math.min(G.sel,it.length-1);
   '<div class="stats"><span class="gchip">⭐ Level '+lvl(GS.xp)+' · '+GS.xp.toLocaleString()+' XP</span><span class="gchip">🏆 Best score '+GS.best.toLocaleString()+'</span><span class="gchip">🔥 Best streak '+GS.bestStreak+'</span></div>'+
   '<div class="gmenu">'+it.map((m,i)=>'<div class="mi'+(i===G.sel?' sel':'')+'" data-i="'+i+'"><div>'+m.t+(m.s?'<small>'+m.s+'</small>':'')+'</div>'+(m.v?'<span class="gv">'+(m.lr?'<span class="ar">◀</span>':'')+esc(m.v)+(m.lr?'<span class="ar">▶</span>':'')+'</span>':'')+'</div>').join("")+'</div>'+
   hint('<span>'+HD("✚")+' move</span><span>'+HD("◀ ▶")+' change</span><span>'+HB("A")+' select</span><span>'+HB("B")+' exit</span>')+'</div>'}
-function studyIds(){const ids=[];for(let i=0;i<Q.length;i++)if(playable(i)&&(G.topic<0||Q[i].s===G.topic))ids.push(i);return ids}
-const posKey=()=>B.id+":"+G.topic;
-function studyLabel(){const ids=studyIds(),done=ids.filter(i=>stat(i)!=="new").length;return "Every question "+(G.topic<0?"in this bank":"in this topic")+", in order — "+done+" / "+ids.length+" done; continues where you stopped"}
-function startRun(mode){G.mode=mode;const ids=mode==="study"?studyIds():pool();if(!ids.length){toastG(mode==="fix"?"No mistakes here — nice!":"No playable questions in this topic");return}
-  G.run={mode,ids:mode==="quick"?ids.slice(0,10):ids,idx:mode==="study"?studyStart(ids):0,score:0,streak:0,best:0,ok:0,n:0,hearts:3,ans:null,perm:null,t0:0,hid:Date.now(),xp:0};
-  P.hist.push({id:G.run.hid,ti:"🎮 Game · "+(mode==="study"?"Study":mode==="quick"?"Quick run":mode==="surv"?"Survival":"Fix mistakes"),m:"p",t1:Date.now(),r:{}});if(P.hist.length>300)P.hist.shift();
+function sess(){return typeof S!=="undefined"&&S&&S.ids&&S.ids.length&&!S.done?S:null}
+function playS(i){const q=Q[i];return q&&q.k==="mcq"&&q.o.length>=2&&q.a.length}
+const topicName=()=>G.topic<0?"all specialties":SECS[G.topic][0];
+function studyLabel(){const s=sess();if(s&&s.mode==="exam")return "You have an unfinished exam — finish it on the regular screen first";
+  if(s)return "“"+esc(s.title||"Session")+"” — question "+(s.idx+1)+" / "+s.ids.length+". Same session as the regular screen";
+  return "Every question in "+topicName()+", in order. Same session as the regular screen"}
+function stepTo(n,dir){const ids=G.run.ids;while(n>=0&&n<ids.length&&!playS(ids[n]))n+=dir;return n}
+function startStudy(fresh){let s=sess();if(s&&s.mode==="exam"){toastG("Finish your exam on the regular screen first");return}
+  if(fresh||!s){const ids=[];for(let i=0;i<Q.length;i++)if(G.topic<0||Q[i].s===G.topic)ids.push(i);if(!ids.length){toastG("No questions in this topic");return}
+    const perms={};if(P.set&&P.set.shuffle)ids.forEach(i=>{if(Q[i].o.length>1)perms[i]=shuffle(Q[i].o.map((_,k)=>k))});
+    S={mode:"practice",title:G.topic<0?"All questions":SECS[G.topic][0],ids,idx:0,picks:{},perms,flags:{},rev:{},elapsed:0,done:false,sid:Date.now()};saveS()}
+  G.mode="study";G.run={mode:"study",ids:S.ids,idx:S.idx,score:0,streak:0,best:0,ok:0,n:0,hearts:3,ans:null,perm:null,t0:0,xp:0};
+  let n=stepTo(S.idx,1);if(n>=S.ids.length)n=stepTo(S.idx,-1);if(n<0){toastG("No questions here can be played in Game mode");return}
+  G.run.idx=S.idx=n;saveS();G.scr="q";drawQ()}
+function startRun(mode){if(mode==="study"||mode==="studynew")return startStudy(mode==="studynew");G.mode=mode;const ids=pool();if(!ids.length){toastG(mode==="fix"?"No mistakes here — nice!":"No playable questions in this topic");return}
+  G.run={mode,ids:mode==="quick"?ids.slice(0,10):ids,idx:0,score:0,streak:0,best:0,ok:0,n:0,hearts:3,ans:null,perm:null,t0:0,hid:Date.now(),xp:0};
+  P.hist.push({id:G.run.hid,ti:"🎮 Game · "+(mode==="quick"?"Quick run":mode==="surv"?"Survival":"Fix mistakes"),m:"p",t1:Date.now(),r:{}});if(P.hist.length>300)P.hist.shift();
   G.scr="q";drawQ()}
-function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.ans==null&&!r.perm){r.perm=shuffle(q.o.map((_,k)=>k));r.t0=Date.now();G.sel=0;r.fresh=true}
+function drawQ(){const r=G.run,qi=r.ids[r.idx],q=Q[qi];if(r.mode==="study"&&!r.perm){r.perm=permOf(qi);const pk=S.picks[qi];r.ans=pk===undefined?null:pk;r.t0=Date.now();G.sel=0;r.fresh=true}if(r.ans==null&&!r.perm){r.perm=shuffle(q.o.map((_,k)=>k));r.t0=Date.now();G.sel=0;r.fresh=true}
   const tot=(r.mode==="quick"||r.mode==="study")?r.ids.length:null,mult=Math.min(4,1+Math.floor(r.streak/3));
   const hud='<div class="ghud"><span>'+(r.mode==="surv"?"❤️".repeat(r.hearts)+"🖤".repeat(3-r.hearts):"Q "+(r.idx+1)+(tot?" / "+tot:""))+'</span><span class="sp"></span>'+(r.streak>=3?'<span class="combo">x'+mult+' COMBO</span>':'')+'<span>🔥 '+r.streak+'</span><span>⭐ '+r.score.toLocaleString()+'</span></div>';
   const bar='<div class="gbar"><i style="width:'+(tot?Math.round(100*(r.idx+(r.ans!=null?1:0))/tot):Math.min(100,r.n*5))+'%"></i></div>';
   const done=r.ans!=null;
   const ops=r.perm.map((oi,k)=>{let c="gop";if(done){if(q.a.includes(oi))c+=" ok";else if(oi===r.ans)c+=" bad";else c+=" dim"}else if(k===G.sel)c+=" sel";
-    return '<div class="'+c+'" data-i="'+k+'"><span class="b bN">'+"ABCD"[k]+'</span><span>'+esc(q.o[oi])+'</span></div>'}).join("");
+    return '<div class="'+c+'" data-i="'+k+'"><span class="b bN">'+String.fromCharCode(65+k)+'</span><span>'+esc(q.o[oi])+'</span></div>'}).join("");
   let fb="";if(done){const ok=q.a.includes(r.ans);fb='<div class="gfb"><b class="t" style="color:'+(ok?'#86e0b0':'#f5a3b3')+'">'+(ok?'Correct!':'Not quite — answer: '+esc(q.o[q.a[0]]))+'</b>'+(q.e?'<div style="margin-top:6px">'+esc(q.e)+'</div>':'')+'</div>'}
   const fr=!!r.fresh;r.fresh=false;root().innerHTML='<div class="gw'+(fr?' fresh':'')+'">'+hud+bar+'<div class="gmeta">'+esc(q.i)+' · '+esc(SECS[q.s]?SECS[q.s][0]:"")+(q.by?' · '+esc(q.by):'')+'</div>'+
    '<div class="gimg">'+imgs(q.pi)+'</div><div class="gqt">'+esc(q.q)+'</div><div class="gopts">'+ops+'</div>'+fb+
    hint(done?(r.mode==="study"?'<span>'+HD("◀ ▶")+' previous / next</span>':'')+'<span>'+HB("A")+' next</span><span>'+HB("Y")+' '+(P.bm[q.i]?'bookmarked ✓':'bookmark')+'</span><span>'+HD("☰")+' pause</span>':'<span>'+HD("✚")+' choose</span><span>'+HB("A")+' answer</span>'+(r.mode==="study"?'<span>'+HD("◀ ▶")+' previous / next</span>':'')+'<span>'+HD("☰")+' pause</span>')+'</div>';
   if(done){const f=root().querySelector(".gfb");f&&f.scrollIntoView({block:"nearest",behavior:"smooth"})}else root().scrollTop=0}
 function answer(k){const r=G.run;if(r.ans!=null||k>=r.perm.length)return;const qi=r.ids[r.idx],q=Q[qi],oi=r.perm[k],ok=q.a.includes(oi);
-  r.ans=oi;r.n++;record(qi,oi);const h=P.hist.find(x=>x.id===r.hid);if(h){h.r[q.i]=ok?1:0;h.t1=Date.now()}save();
+  r.ans=oi;r.n++;if(r.mode==="study"){S.picks[qi]=oi;record(qi,oi);save();saveS()}else{record(qi,oi);const h=P.hist.find(x=>x.id===r.hid);if(h){h.r[q.i]=ok?1:0;h.t1=Date.now()}save()}
   if(ok){r.ok++;r.streak++;r.best=Math.max(r.best,r.streak);const mult=Math.min(4,1+Math.floor((r.streak-1)/3)),sec=(Date.now()-r.t0)/1000,bonus=Math.max(0,Math.round(50*(1-sec/40))),pts=(100+bonus)*mult;r.score+=pts;
     pop("+"+pts,"#9ad4ec");if(r.streak%3===0){sfx.combo();rumble(160,.5)}else{sfx.ok();rumble(60,.25)}}
   else{r.streak=0;if(r.mode==="surv")r.hearts--;pop(r.mode==="surv"?"💔":"✖","#f5a3b3");sfx.bad();rumble(260,.9)}
   drawQ()}
-function studyStart(ids){GS.pos=GS.pos||{};const p=GS.pos[posKey()];if(typeof p==="number"&&p>0&&p<ids.length)return p;const k=ids.findIndex(i=>stat(i)==="new");return k>0?k:0}
-function goTo(n){const r=G.run;if(n<0||n>=r.ids.length)return;r.idx=n;r.ans=null;r.perm=null;if(r.mode==="study"){GS.pos=GS.pos||{};GS.pos[posKey()]=n;gsave()}drawQ()}
-function next(){const r=G.run;if(r.mode==="surv"&&r.hearts<=0)return end();if(r.idx+1>=r.ids.length){if(r.mode==="study"){GS.pos[posKey()]=0;gsave()}return end()}goTo(r.idx+1)}
+function goTo(n,dir){const r=G.run;if(r.mode==="study"){n=stepTo(n,dir||1);if(n<0||n>=r.ids.length)return false;S.idx=n;saveS()}else if(n<0||n>=r.ids.length)return false;
+  r.idx=n;r.ans=null;r.perm=null;drawQ();return true}
+function next(){const r=G.run;if(r.mode==="surv"&&r.hearts<=0)return end();if(!goTo(r.idx+1,1))return end()}
 function end(){const r=G.run;G.scr="end";const acc=r.n?Math.round(100*r.ok/r.n):0;r.xp=r.score+r.ok*20;const before=lvl(GS.xp);GS.xp+=r.xp;
   const nb=r.score>GS.best;if(nb)GS.best=r.score;GS.bestStreak=Math.max(GS.bestStreak,r.best);gsave();sfx.end();G.sel=0;
   root().innerHTML='<div class="gw"><div class="gbig">'+(r.mode==="surv"&&r.hearts<=0?"Game over":"Run complete")+'</div><div class="gtag">'+(nb?"🏆 New best score!":"")+(lvl(GS.xp)>before?" ⭐ Level up! You are now level "+lvl(GS.xp):"")+'</div>'+
@@ -171,7 +183,7 @@ function act(b){if(!G.on)return;
     if(b==="B")return closeGame();return}
   if(G.scr==="q"){const r=G.run;
     if(b==="start"){G.scr="pause";G.sel=0;return draw()}
-    if(r.mode==="study"&&(b==="left"||b==="right")){sfx.move();return goTo(r.idx+(b==="left"?-1:1))}
+    if(r.mode==="study"&&(b==="left"||b==="right")){sfx.move();goTo(r.idx+(b==="left"?-1:1),b==="left"?-1:1);return}
     if(r.ans==null){const k=BTN.indexOf(b);
       if(b==="up"||b==="down"){G.sel=(G.sel+(b==="up"?-1:1)+r.perm.length)%r.perm.length;sfx.move();root().querySelectorAll(".gop").forEach((o,k)=>o.classList.toggle("sel",k===G.sel));return}
       if(b==="A")return answer(G.sel);if(b==="B"){G.scr="pause";G.sel=0;return draw()}return}
