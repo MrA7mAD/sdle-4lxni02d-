@@ -49,22 +49,52 @@ let NB=null;function noise(t,d,v){if(!NB){NB=AC.createBuffer(1,AC.sampleRate*.2,
   const s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();f.type="highpass";f.frequency.value=6000;s.buffer=NB;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(f);f.connect(g);g.connect(MG);s.start(t);s.stop(t+d)}
 function kick(t){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(40,t+.12);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.14);o.connect(g);g.connect(MG);o.start(t);o.stop(t+.15)}
 const NF=n=>{const m=n.match(/^([A-G])(#?)(\d)$/);const st={C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]]+(m[2]?1:0)+12*(+m[3]+1);return 440*Math.pow(2,(st-69)/12)};
-// Original calm lo-fi tune: soft pads, gentle arpeggio, sparse melody (C major, ~72 bpm).
-const CH=[["C3",["C4","E4","G4","B4"]],["A2",["A3","C4","E4","G4"]],["F2",["F3","A3","C4","E4"]],["G2",["G3","B3","D4","E4"]],
- ["E2",["E3","G3","B3","D4"]],["A2",["A3","C4","E4","G4"]],["D3",["D4","F4","A4","C5"]],["G2",["G3","B3","D4","F#4"]]];
-const MEL=[[0,"E5",3],[4,"D5",2],[6,"C5",2],[8,"A4",4],[13,"C5",3],[16,"E5",2],[18,"G5",2],[20,"E5",4],[25,"D5",3],
- [32,"G5",3],[36,"E5",2],[38,"D5",2],[40,"C5",4],[45,"E5",3],[48,"F5",2],[50,"E5",2],[52,"D5",4],[57,"B4",3]];
-const E8=60/72/2,BARS=8;let seq=null,nextT=0,step=0;
-function pad(f,t,d,v){const o=AC.createOscillator(),g=AC.createGain();o.type="sine";o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+d*.35);g.gain.linearRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(MG);o.start(t);o.stop(t+d+.05)}
-function soft(f,t,d,v,type){const o=AC.createOscillator(),g=AC.createGain();o.type=type||"triangle";o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.03);g.gain.exponentialRampToValueAtTime(.0005,t+d);o.connect(g);g.connect(MG);o.start(t);o.stop(t+d+.05)}
-function schedule(){const tot=BARS*8*2;while(nextT<AC.currentTime+.2){const bs=step%(BARS*8),bar=Math.floor(bs/8),pos=bs%8,[root,ch]=CH[bar],sec=Math.floor(step/(BARS*8))%2;
-    if(pos===0){ch.forEach(n=>pad(NF(n),nextT,E8*8.2,.09));pad(NF(root),nextT,E8*8.2,.22)}
-    const arp=[0,1,2,3,2,1,2,3][pos];soft(NF(ch[arp])*2,nextT,E8*1.6,sec?.10:.07,"triangle");
-    if(pos===4)soft(NF(root)*2,nextT,E8*3,.10,"sine");
-    for(const[at,n,d]of MEL)if(at===bs&&(sec===0||at%16!==0||true)){soft(NF(n),nextT,E8*d*1.1,.16,"sine");soft(NF(n)*2,nextT,E8*d*.6,.03,"triangle")}
-    nextT+=E8;step=(step+1)%tot}}
-function musicOn(){ac();if(seq)return;nextT=AC.currentTime+.05;seq=setInterval(schedule,25)}
-function musicOff(){if(seq){clearInterval(seq);seq=null}}
+// Original melancholic trip-hop / ambient piece ("Fog" mood). D minor, 68 bpm. Returns loop length (s).
+function buildTune(ctx,out,t0){
+  const BPM=68,BEAT=60/BPM,BAR=BEAT*4,BARS=16;
+  const N=n=>{const m=n.match(/^([A-G])([b#]?)(\d)$/);const st={C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]]+(m[2]==="#"?1:m[2]==="b"?-1:0)+12*(+m[3]+1);return 440*Math.pow(2,(st-69)/12)};
+  // reverb
+  let ir=buildTune.ir;if(!ir||ir.sampleRate!==ctx.sampleRate){ir=buildTune.ir=ctx.createBuffer(2,ctx.sampleRate*3.2,ctx.sampleRate);
+  for(let c=0;c<2;c++){const d=ir.getChannelData(c);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.6)}}
+  const rev=ctx.createConvolver();rev.buffer=ir;const revG=ctx.createGain();revG.gain.value=.55;rev.connect(revG);revG.connect(out);
+  const dry=ctx.createGain();dry.gain.value=.8;dry.connect(out);
+  const send=(node,amt)=>{const g=ctx.createGain();g.gain.value=amt;node.connect(g);g.connect(rev)};
+  // tape-ish echo for the guitar
+  const dl=ctx.createDelay(2);dl.delayTime.value=BEAT*.75;const fb=ctx.createGain();fb.gain.value=.38;const dlf=ctx.createBiquadFilter();dlf.type="lowpass";dlf.frequency.value=2200;
+  dl.connect(dlf);dlf.connect(fb);fb.connect(dl);const echoOut=ctx.createGain();echoOut.gain.value=.45;dlf.connect(echoOut);echoOut.connect(dry);send(echoOut,.5);
+  const CH=[["D2",["D3","A3","E4","F4"]],["Bb1",["Bb2","F3","A3","D4"]],["G1",["G2","D3","F3","Bb3"]],["A1",["A2","E3","G3","C#4"]],
+            ["D2",["D3","A3","C4","F4"]],["F1",["F2","C3","E3","A3"]],["G1",["G2","D3","Bb3","D4"]],["A1",["A2","E3","A3","C#4"]]];
+  const MEL=[[8,0,"A4",2],[8,2,"F4",1],[8,3,"E4",3],[9,2,"D4",1],[9,3,"F4",2.5],[10,0,"G4",1.5],[10,1.5,"F4",.5],[10,2,"D4",2],
+             [11,0,"E4",3],[11,3,"C#4",1],[12,0,"D4",2],[12,2,"A4",2],[13,0,"C5",1.5],[13,1.5,"A4",.5],[13,2,"G4",2],
+             [14,0,"F4",1.5],[14,1.5,"G4",.5],[14,2,"Bb4",2],[15,0,"A4",4]];
+  function pad(f,t,d,v){for(const det of[-7,6]){const o=ctx.createOscillator(),fl=ctx.createBiquadFilter(),g=ctx.createGain();o.type="sawtooth";o.frequency.value=f;o.detune.value=det;
+    fl.type="lowpass";fl.frequency.setValueAtTime(500,t);fl.frequency.linearRampToValueAtTime(900,t+d*.5);fl.frequency.linearRampToValueAtTime(500,t+d);
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+d*.4);g.gain.linearRampToValueAtTime(.0001,t+d+.4);o.connect(fl);fl.connect(g);g.connect(dry);send(g,.8);o.start(t);o.stop(t+d+.5)}}
+  function pluck(f,t,v){const o=ctx.createOscillator(),o2=ctx.createOscillator(),fl=ctx.createBiquadFilter(),g=ctx.createGain();o.type="triangle";o2.type="sawtooth";o.frequency.value=f;o2.frequency.value=f*1.002;
+    fl.type="lowpass";fl.frequency.setValueAtTime(3200,t);fl.frequency.exponentialRampToValueAtTime(700,t+.6);const g2=ctx.createGain();g2.gain.value=.25;
+    g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0005,t+1.6);
+    o.connect(fl);o2.connect(g2);g2.connect(fl);fl.connect(g);g.connect(dry);g.connect(dl);send(g,.35);o.start(t);o2.start(t);o.stop(t+1.7);o2.stop(t+1.7)}
+  function bass(f,t,d,v){const o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.04);g.gain.setValueAtTime(v,t+d*.7);g.gain.linearRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(dry);o.start(t);o.stop(t+d+.05)}
+  function lead(f,t,d,v){const o=ctx.createOscillator(),lfo=ctx.createOscillator(),lg=ctx.createGain(),fl=ctx.createBiquadFilter(),g=ctx.createGain();o.type="square";o.frequency.value=f;
+    lfo.frequency.value=5.2;lg.gain.setValueAtTime(0,t);lg.gain.linearRampToValueAtTime(f*.012,t+.35);lfo.connect(lg);lg.connect(o.frequency);
+    fl.type="lowpass";fl.frequency.value=1500;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.08);g.gain.setValueAtTime(v,t+d*.75);g.gain.linearRampToValueAtTime(.0001,t+d+.25);
+    o.connect(fl);fl.connect(g);g.connect(dry);g.connect(dl);send(g,.9);o.start(t);lfo.start(t);o.stop(t+d+.3);lfo.stop(t+d+.3)}
+  let NB=buildTune.nb;if(!NB||NB.sampleRate!==ctx.sampleRate){NB=buildTune.nb=ctx.createBuffer(1,ctx.sampleRate*.5,ctx.sampleRate);const c=NB.getChannelData(0);for(let i=0;i<c.length;i++)c[i]=Math.random()*2-1}
+  function kick(t,v){const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.setValueAtTime(110,t);o.frequency.exponentialRampToValueAtTime(42,t+.18);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.35);o.connect(g);g.connect(dry);o.start(t);o.stop(t+.4)}
+  function snare(t,v){const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=NB;f.type="bandpass";f.frequency.value=1600;f.Q.value=.7;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.32);s.connect(f);f.connect(g);g.connect(dry);send(g,1.2);s.start(t);s.stop(t+.35)}
+  function hat(t,v){const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=NB;f.type="highpass";f.frequency.value=7000;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.07);s.connect(f);f.connect(g);g.connect(dry);s.start(t);s.stop(t+.08)}
+  const ARP=[0,1,2,3,2,1,2,1];
+  for(let bar=0;bar<BARS;bar++){const tb=t0+bar*BAR,[root,ch]=CH[bar%8];
+    pad(N(ch[0]),tb,BAR,.035);pad(N(ch[2]),tb,BAR,.03);pad(N(ch[3]),tb,BAR,.025);
+    bass(N(root),tb,BEAT*2.6,.32);bass(N(root),tb+BEAT*3,BEAT*.9,.2);
+    for(let e=0;e<8;e++){const sw=e%2?BEAT*.06:0;pluck(N(ch[ARP[e]])*2,tb+e*BEAT/2+sw,e%2?.05:.08)}
+    if(bar>=2){kick(tb,.55);kick(tb+BEAT*1.75,.35);kick(tb+BEAT*2.5,.4);snare(tb+BEAT,.22);snare(tb+BEAT*3,.22);for(let h=0;h<8;h++)hat(tb+h*BEAT/2+(h%2?BEAT*.06:0),h%2?.03:.05)}}
+  for(const[bar,beat,n,d]of MEL)lead(N(n),t0+bar*BAR+beat*BEAT,d*BEAT,.05);
+  return BARS*BAR}
+let mus=null;
+function musicOn(){ac();if(mus)return;const g=AC.createGain();g.gain.setValueAtTime(0,AC.currentTime);g.gain.linearRampToValueAtTime(1.3,AC.currentTime+2);g.connect(MG);
+  mus={g,next:AC.currentTime+.1,timer:0};const sch=()=>{if(!mus)return;while(mus.next<AC.currentTime+3)mus.next+=buildTune(AC,mus.g,mus.next)};sch();mus.timer=setInterval(sch,1000)}
+function musicOff(){if(!mus)return;const m=mus;mus=null;clearInterval(m.timer);try{m.g.gain.cancelScheduledValues(AC.currentTime);m.g.gain.setTargetAtTime(0,AC.currentTime,.25)}catch(e){}setTimeout(()=>{try{m.g.disconnect()}catch(e){}},1500)}
 function wantMusic(){if(!A.music||document.visibilityState!=="visible")return false;const g=document.getElementById("game");return !!(g&&g.classList.contains("on"))}
 setInterval(()=>{if(wantMusic()){if(AC&&AC.state==="running")musicOn()}else musicOff()},400);
 const fx={ok:()=>{note(SG,660,AC.currentTime,.1,"square",.5);note(SG,990,AC.currentTime+.08,.18,"square",.5)},
@@ -140,7 +170,7 @@ setInterval(()=>{try{if(!raf&&pads().length){poll();const r=document.getElementB
 document.addEventListener("pointerdown",()=>document.documentElement.classList.remove("pad"),true);
 // ---------- settings row ----------
 window.arcRow=function(){const p=pads(),seg=(k,on)=>'<span class="seg" style="display:inline-flex;gap:0"><button class="btn sm'+(on?' pri':'')+'" data-arc="'+k+'1">On</button><button class="btn sm'+(!on?' pri':'')+'" data-arc="'+k+'0">Off</button></span>';
-  return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>Calm background music in Game mode, sound effects, streaks and XP. Controller: '+
+  return '<div class="set-row" id="arcrow"><div><b>Arcade mode</b><p>Atmospheric background music in Game mode, sound effects, streaks and XP. Controller: '+
   (p.length?'<span style="color:var(--ok,#3fb37f)">'+esc(p[0].id)+' detected</span> ('+(p[0].mapping==="standard"?"standard layout":"non-standard layout")+') · <b id="arctest">press a button to test</b> — A/B/X/Y answer, D-pad ◀ ▶ previous/next, A next after answering, Y bookmark, ☰ Game mode. Outside questions the D-pad moves and A selects.':'<span style="color:var(--bad)">not detected.</span> <i>('+(navigator.getGamepads?"browser controller support on":"this browser has controller support turned off")+')</i> Turn it on in Xbox (or iOS) mode and pair it with this device (Bluetooth, USB cable or its dongle), click once on this page, then press any button on the controller.')+
   '</p></div><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end"><span>Music '+seg("m",A.music)+'</span><span>Effects '+seg("s",A.sfx)+'</span></div></div>'};
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-arc]");if(!b)return;const k=b.dataset.arc;
