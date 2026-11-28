@@ -92,8 +92,67 @@ function buildTune(ctx,out,t0){
   for(const[bar,beat,n,d]of MEL)lead(N(n),t0+bar*BAR+beat*BEAT,d*BEAT,.05);
   return BARS*BAR}
 let mus=null;
-function musicOn(){ac();if(mus)return;const g=AC.createGain();g.gain.setValueAtTime(0,AC.currentTime);g.gain.linearRampToValueAtTime(1.3,AC.currentTime+2);g.connect(MG);
-  mus={g,next:AC.currentTime+.1,timer:0};const sch=()=>{if(!mus)return;while(mus.next<AC.currentTime+3)mus.next+=buildTune(AC,mus.g,mus.next)};sch();mus.timer=setInterval(sch,1000)}
+// Extra original tracks for Game mode. Each build*(ctx,out,t0) schedules one loop and returns its length (s).
+function tkKit(ctx,out){const K={};
+  K.N=n=>{const m=n.match(/^([A-G])([b#]?)(\d)$/);const st={C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]]+(m[2]==="#"?1:m[2]==="b"?-1:0)+12*(+m[3]+1);return 440*Math.pow(2,(st-69)/12)};
+  let ir=tkKit.ir;if(!ir||ir.sampleRate!==ctx.sampleRate){ir=tkKit.ir=ctx.createBuffer(2,ctx.sampleRate*4,ctx.sampleRate);for(let c=0;c<2;c++){const d=ir.getChannelData(c);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2.4)}}
+  let nb=tkKit.nb;if(!nb||nb.sampleRate!==ctx.sampleRate){nb=tkKit.nb=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const c=nb.getChannelData(0);for(let i=0;i<c.length;i++)c[i]=Math.random()*2-1}
+  const rev=ctx.createConvolver();rev.buffer=ir;const rg=ctx.createGain();rg.gain.value=.6;rev.connect(rg);rg.connect(out);
+  K.dry=ctx.createGain();K.dry.gain.value=.8;K.dry.connect(out);
+  K.send=(n,a)=>{const g=ctx.createGain();g.gain.value=a;n.connect(g);g.connect(rev)};
+  K.echo=(time,fbv)=>{const dl=ctx.createDelay(3);dl.delayTime.value=time;const fb=ctx.createGain();fb.gain.value=fbv;const lp=ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=2000;dl.connect(lp);lp.connect(fb);fb.connect(dl);const o=ctx.createGain();o.gain.value=.45;lp.connect(o);o.connect(K.dry);K.send(o,.5);return dl};
+  K.env=(g,t,a,v,hold,rel)=>{g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+a);g.gain.setValueAtTime(v,t+a+hold);g.gain.linearRampToValueAtTime(.0001,t+a+hold+rel)};
+  K.osc=(type,f,t,d,v,opt={})=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=f;if(opt.det)o.detune.value=opt.det;let n=o;
+    if(opt.lp){const fl=ctx.createBiquadFilter();fl.type="lowpass";fl.frequency.value=opt.lp;if(opt.q)fl.Q.value=opt.q;o.connect(fl);n=fl}
+    if(opt.vib){const l=ctx.createOscillator(),lg=ctx.createGain();l.frequency.value=opt.vib;lg.gain.value=f*.01;l.connect(lg);lg.connect(o.frequency);l.start(t);l.stop(t+d+.5)}
+    n.connect(g);K.env(g,t,opt.a||.01,v,opt.hold!=null?opt.hold:0,opt.r!=null?opt.r:d);g.connect(K.dry);if(opt.rev)K.send(g,opt.rev);if(opt.to)g.connect(opt.to);o.start(t);o.stop(t+(opt.a||.01)+(opt.hold||0)+(opt.r!=null?opt.r:d)+.05);return g};
+  K.noise=(t,d,v,type,f,rev,q)=>{const s=ctx.createBufferSource(),fl=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=nb;fl.type=type;fl.frequency.value=f;if(q)fl.Q.value=q;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl);fl.connect(g);g.connect(K.dry);if(rev)K.send(g,rev);s.start(t,Math.random());s.stop(t+d+.02)};
+  K.kick=(t,v)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.setValueAtTime(100,t);o.frequency.exponentialRampToValueAtTime(40,t+.2);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.38);o.connect(g);g.connect(K.dry);o.start(t);o.stop(t+.4)};
+  K.bell=(f,t,v)=>{[1,2.76,5.4].forEach((m,i)=>K.osc("sine",f*m,t,3.5/(i+1),v/(i+1.5),{rev:1.2}))};
+  return K}
+
+// 1) "Ash" — dark ambient: low drone, slow swells, distant bells, wind. No drums. ~64 s.
+function buildAsh(ctx,out,t0){const K=tkKit(ctx,out),N=K.N,L=64;
+  [["D1",0],["A1",0],["D2",6]].forEach(([n,d])=>K.osc("sawtooth",N(n),t0,L-6,.05,{a:6,hold:L-14,r:6,lp:260,det:d,rev:.6}));
+  const sw=[["F3",0],["E3",16],["G3",32],["C#3",48]];sw.forEach(([n,at])=>{K.osc("triangle",N(n),t0+at,14,.05,{a:6,hold:3,r:7,rev:1});K.osc("sine",N(n)*1.5,t0+at+2,12,.025,{a:5,hold:2,r:6,rev:1.2})});
+  [[3,"A5"],[11,"F5"],[19,"D6"],[27,"C#6"],[35,"A5"],[43,"Bb5"],[51,"E5"],[58,"D5"]].forEach(([at,n])=>K.bell(N(n),t0+at,.06));
+  for(let i=0;i<8;i++)K.noise(t0+i*8,7.5,.035,"bandpass",500+Math.random()*900,1.2,.6);
+  return L}
+
+// 2) "Letter" — slow melancholic electric-piano ballad, A minor, 60 bpm, soft brushes in the second half. ~64 s.
+function buildLetter(ctx,out,t0){const K=tkKit(ctx,out),N=K.N,B=1,BAR=4,ec=K.echo(.75,.3);
+  const CH=[["A2",["A3","C4","E4","G4"]],["F2",["F3","A3","C4","E4"]],["C3",["G3","C4","E4","B4"]],["E2",["G#3","B3","D4","E4"]],
+            ["D2",["F3","A3","C4","E4"]],["A2",["A3","C4","E4","G4"]],["Bb2",["F3","Bb3","D4","A4"]],["E2",["G#3","B3","D4","F4"]]];
+  const ep=(f,t,v)=>{K.osc("sine",f,t,2.6,v,{rev:.5,to:ec});K.osc("sine",f*2,t,.8,v*.25,{rev:.3});K.osc("triangle",f*4,t,.15,v*.08)};
+  const MEL=[[0,0,"E5",2],[0,2,"D5",1],[0,3,"C5",1],[1,0,"A4",3],[2,0,"G4",1],[2,1,"C5",1],[2,2,"E5",2],[3,0,"D5",3],[3,3,"B4",1],
+             [4,0,"C5",2],[4,2,"A4",2],[5,0,"E5",2],[5,2,"G5",1],[5,3,"E5",1],[6,0,"F5",2],[6,2,"D5",2],[7,0,"E5",4]];
+  for(let r=0;r<2;r++)for(let bar=0;bar<8;bar++){const tb=t0+(r*8+bar)*BAR*B,[root,ch]=CH[bar];
+    K.osc("sine",N(root),tb,BAR*.95,.22,{a:.05,hold:BAR*.5,r:BAR*.45});
+    [0,1.5,2,3].forEach((bt,i)=>ep(N(ch[i])*(i>2?1:1),tb+bt,.06));ep(N(ch[3]),tb+2.5,.035);
+    if(r===1){K.kick(tb,.35);K.kick(tb+2.5,.25);K.noise(tb+1,.45,.08,"bandpass",2200,1,.8);K.noise(tb+3,.45,.08,"bandpass",2200,1,.8);for(let h=0;h<8;h++)K.noise(tb+h*.5,.09,h%2?.012:.02,"highpass",6500)}}
+  for(let r=0;r<2;r++)for(const[bar,bt,n,d]of MEL)K.osc("triangle",N(n),t0+(r*8+bar)*BAR+bt,d,r?.045:.035,{a:.05,hold:d*.6,r:d*.6,vib:4.8,rev:.9,to:ec});
+  return 16*BAR}
+
+// 3) "Rust" — darker trip-hop, E minor, 80 bpm: gritty bass, tremolo-picked mandolin-like line, heavy reverbed snare. ~48 s.
+function buildRust(ctx,out,t0){const K=tkKit(ctx,out),N=K.N,BEAT=60/80,BAR=BEAT*4,ec=K.echo(BEAT*1.5,.35);
+  const ws=ctx.createWaveShaper();{const c=new Float32Array(1024);for(let i=0;i<1024;i++){const x=i/512-1;c[i]=Math.tanh(3*x)}ws.curve=c}const bg=ctx.createGain();bg.gain.value=.5;ws.connect(bg);bg.connect(K.dry);
+  const CH=[["E1",["E3","G3","B3"]],["C2",["C3","E3","G3"]],["A1",["A2","C3","E3"]],["B1",["B2","D#3","F#3"]]];
+  const TREM=[[0,"B4",2],[0,2,"G4",2],[1,0,"E4",2],[1,2,"G4",2],[2,0,"A4",3],[2,3,"C5",1],[3,0,"B4",4],
+              [4,0,"E5",2],[4,2,"D5",1],[4,3,"B4",1],[5,0,"C5",4],[6,0,"A4",2],[6,2,"B4",1],[6,3,"G4",1],[7,0,"F#4",4]];
+  for(let bar=0;bar<16;bar++){const tb=t0+bar*BAR,[root,ch]=CH[bar%4];
+    const o=ctx.createOscillator(),g=ctx.createGain();o.type="sawtooth";o.frequency.value=N(root)*2;const lp=ctx.createBiquadFilter();lp.type="lowpass";lp.frequency.value=380;o.connect(lp);lp.connect(g);g.connect(ws);K.env(g,tb,.02,.5,BAR*.55,BAR*.3);o.start(tb);o.stop(tb+BAR);
+    ch.forEach((n,i)=>K.osc("sawtooth",N(n),tb,BAR,.018,{a:BAR*.4,hold:0,r:BAR*.6,lp:700,det:i*4-4,rev:.8}));
+    if(bar>=4){K.kick(tb,.6);K.kick(tb+BEAT*2.5,.45);K.noise(tb+BEAT,.6,.2,"bandpass",1400,1.6,.6);K.noise(tb+BEAT*3,.6,.2,"bandpass",1400,1.6,.6);for(let h=0;h<8;h++)K.noise(tb+h*BEAT/2,.06,h%2?.015:.03,"highpass",7000)}}
+  const trem=(f,t,d,v)=>{for(let x=0;x<d;x+=.09)K.osc("triangle",f,t+x,.12,v*(.75+.25*Math.random()),{lp:2600,rev:.6,to:ec})};
+  for(const it of TREM){let bar,bt,n,d;if(it.length===3){bar=it[0];bt=0;n=it[1];d=it[2]}else[bar,bt,n,d]=it;
+    for(const rep of[0,8])if(bar+rep>=4)trem(N(n),t0+(bar+rep)*BAR+bt*BEAT,d*BEAT*.95,.04)}
+  return 16*BAR}
+const TRACKS=[{n:"Fog",f:buildTune,g:1.3},{n:"Letter",f:buildLetter,g:1.8},{n:"Ash",f:buildAsh,g:4},{n:"Rust",f:buildRust,g:1.05}];
+function musicOn(){ac();if(mus)return;const g=AC.createGain();g.gain.setValueAtTime(0,AC.currentTime);g.gain.linearRampToValueAtTime(1,AC.currentTime+2);g.connect(MG);
+  const ti=((A.trk|0)%TRACKS.length+TRACKS.length)%TRACKS.length;A.trk=ti+1;asave();
+  mus={g,next:AC.currentTime+.1,timer:0,ti,loops:0};
+  const sch=()=>{if(!mus)return;while(mus.next<AC.currentTime+3){const T=TRACKS[mus.ti],tg=AC.createGain();tg.gain.value=T.g;tg.connect(mus.g);mus.next+=T.f(AC,tg,mus.next);
+    if(++mus.loops>=2){mus.loops=0;mus.ti=(mus.ti+1)%TRACKS.length}}};sch();mus.timer=setInterval(sch,1000)}
 function musicOff(){if(!mus)return;const m=mus;mus=null;clearInterval(m.timer);try{m.g.gain.cancelScheduledValues(AC.currentTime);m.g.gain.setTargetAtTime(0,AC.currentTime,.25)}catch(e){}setTimeout(()=>{try{m.g.disconnect()}catch(e){}},1500)}
 function wantMusic(){if(!A.music||document.visibilityState!=="visible")return false;const g=document.getElementById("game");return !!(g&&g.classList.contains("on"))}
 setInterval(()=>{if(wantMusic()){if(AC&&AC.state==="running")musicOn()}else musicOff()},400);
